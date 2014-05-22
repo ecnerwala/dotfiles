@@ -1,0 +1,13 @@
+"3.8.2 (created: 2014/02/13 23:52:43)
+
+map <BS> H
+map <S-BS> L
+map gh gT
+map gl gt
+map <A-h> gh
+map <A-l> gl
+map <A-Left> <A-h>
+map <A-Right> <A-l>
+source! ~/.vimperatorrc.local
+
+" vim: set ft=vimperator:

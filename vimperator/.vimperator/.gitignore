@@ -1,0 +1,2 @@
+#Ignores history files
+info/**/history-*

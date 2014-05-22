@@ -1,0 +1,63 @@
+#! /bin/sh
+
+###########################################################################
+# Example auto start file for i3-wm, I execute it from i3 config with
+# exec $HOME/bin/auto-start-for-i3
+#
+# For mouse moving I use xte. In Debian its in the package xautomation.
+###########################################################################
+
+
+# Wait for program coming up
+wait_for_program () {
+	n=0
+	while true
+	do
+		# PID of last background command
+		if xdotool search --onlyvisible --pid $!; then
+			break
+		else
+			# 20 seconds timeout
+			if [ $n -eq 20 ]; then
+				xmessage "Error on executing"
+				break
+			else
+				n=`expr $n + 1`
+				sleep 1
+			fi
+		fi
+	done
+}
+
+# status workspace
+i3-msg "workspace 2; move workspace to output LVDS1; layout stacking"
+konsole &
+wait_for_program
+
+ko weechat &
+wait_for_program
+i3-msg "split v; layout tabbed"
+
+iceweasel -new-window mail.google.com &
+iceweasel -new-window calendar.google.com &
+wait_for_program
+
+keepass2 &
+wait_for_program
+
+pithos &
+wait_for_program
+
+# working workspace
+i3-msg "workspace 1; move workspace to output VGA1; layout splith"
+konsole &
+wait_for_program
+
+iceweasel -new-window
+wait_for_program
+
+# Need a refresh, here we go...
+~/.fehbg &
+xrefresh &
+
+exit 0
