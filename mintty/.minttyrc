@@ -20,3 +20,4 @@ BoldWhite=253,246,227
 ForegroundColour=88,110,117
 BackgroundColour=253,246,227
 CursorColour=238,232,213
+CursorType=underscore
