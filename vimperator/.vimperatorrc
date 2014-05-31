@@ -12,6 +12,10 @@ map <A-Right> <A-l>
 autocmd PageLoad about:home :extd Pushbullet
 autocmd PageLoad about:home :exte Pushbullet
 
+"autocmd PageLoad .* :set gui=nonavigation
+
+set gui=nonavigation
+
 source! ~/.vimperatorrc.local
 
 
