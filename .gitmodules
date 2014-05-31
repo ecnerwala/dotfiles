@@ -4,3 +4,6 @@
 [submodule "vim/.vim/bundle/vundle"]
 	path = vim/.vim/bundle/vundle
 	url = git@github.com:gmarik/vundle.git
+[submodule "mutt/.mutt/mutt-colors-solarized"]
+	path = mutt/.mutt/mutt-colors-solarized
+	url = git@github.com:altercation/mutt-colors-solarized.git
