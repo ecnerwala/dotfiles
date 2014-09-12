@@ -6,7 +6,6 @@ set rtp+=~/.vim/bundle/vundle
 execute vundle#rc()
 
 Plugin 'gmarik/vundle'
-
 Plugin 'scrooloose/nerdtree'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'Raimondi/delimitMate'
