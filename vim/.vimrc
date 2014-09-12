@@ -20,6 +20,8 @@ Plugin 'vimwiki'
 Plugin 'Rip-Rip/clang_complete'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
+Plugin 'bling/vim-airline'
+Plugin 'lukaszkorecki/workflowish'
 
 syntax on
 filetype plugin indent on
@@ -31,7 +33,7 @@ set tabstop=4
 set noexpandtab
 set nu
 set ruler
-set errorformat^=%-GIn\ file\ included\ %.%# 
+set errorformat^=%-GIn\ file\ included\ %.%#
 set foldmethod=syntax
 
 set mouse=a
@@ -46,11 +48,13 @@ nmap \rr :SCCompileRun<cr>
 call SingleCompile#ChooseCompiler('tex', 'pdflatex')
 call SingleCompile#ChooseCompiler('cpp', 'g++')
 
+let g:clang_complete_loaded=1
 let g:clang_user_options='-std=c++11'
 let g:clang_auto_select=1
+let g:clang_complete_auto=0
 
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
-function WrapOn() 
+function WrapOn()
 	setlocal wrap linebreak nolist
 	set virtualedit=
 	setlocal display+=lastline
@@ -63,7 +67,7 @@ function WrapOn()
 	inoremap <buffer> <silent> <Home> <C-o>g<Home>
 	inoremap <buffer> <silent> <End>  <C-o>g<End>
 endfunction
-function WrapOff() 
+function WrapOff()
 	setlocal nowrap
 	set virtualedit=all
 	silent! nunmap <buffer> <Up>
@@ -87,13 +91,17 @@ endfunction
 call WrapOn()
 
 set t_Co=16
-set background=light
 colorscheme solarized
 
 set spellfile=~/.vim/spell/en.utf-8.add
 
+set laststatus=2
+
+let g:airline_powerline_fonts = 1
+
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
+let g:Tex_CompileRule_pdf='latexmk -pdf -synctex=1'
 
 let hostfile= $HOME . '/vimrc-' . hostname()
 if filereadable(hostfile)

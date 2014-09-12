@@ -1,0 +1,6 @@
+! Map CapsLock to another Escape
+
+remove Lock = Caps_Lock
+keysym Caps_Lock = Escape
+remove control = Control_R
+add mod4 = Control_R

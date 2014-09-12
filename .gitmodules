@@ -7,3 +7,6 @@
 [submodule "mutt/.mutt/mutt-colors-solarized"]
 	path = mutt/.mutt/mutt-colors-solarized
 	url = git@github.com:altercation/mutt-colors-solarized.git
+[submodule "zsh/.oh-my-zsh"]
+	path = zsh/.oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git

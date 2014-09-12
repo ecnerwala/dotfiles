@@ -15,4 +15,3 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 export XDG_CONFIG_HOME=${HOME}/.config
-

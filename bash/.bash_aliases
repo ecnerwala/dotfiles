@@ -3,9 +3,7 @@ alias la='ls -alh --color=auto'
 cs() { cd $@ && la; }
 
 alias e='vim'
-alias cl='clear'
-
-alias cdl='cd && cl'
+alias cls='clear'
 
 alias open='kde-open'
 alias ko='konsole -e'
