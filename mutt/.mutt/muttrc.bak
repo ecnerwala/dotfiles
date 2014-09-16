@@ -2,10 +2,10 @@ source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
 
 set folder      = imaps://imap.gmail.com:993
 set imap_user   = he.andrew.mail@gmail.com
-set imap_pass   = qzbwavucjvuvakkp
+set imap_pass   = 
 
 set smtp_url	= smtp://andrew@smtp.gmail.com:587
-set smtp_pass	= qzbwavucjvuvakkp
+set smtp_pass	= 
 set from		= he.andrew.mail@gmail.com
 set realname	= "Andrew He"
 
