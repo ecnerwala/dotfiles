@@ -37,6 +37,8 @@ set foldmethod=syntax
 
 set mouse=a
 
+cmap w!! w !sudo tee > /dev/null %
+
 let g:SingleCompile_alwayscompile = 0
 let g:SingleCompile_showquickfixiferror = 1
 let delimitMate_expand_cr = 1
