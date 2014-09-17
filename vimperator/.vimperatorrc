@@ -8,6 +8,10 @@ map <A-h> gh
 map <A-l> gl
 map <A-Left> <A-h>
 map <A-Right> <A-l>
+map <A-S-H> :tabmove -1<Enter>
+map <A-S-L> :tabmove +1<Enter>
+map <A-S-Left> <A-S-H>
+map <A-S-Right> <A-S-L>
 
 autocmd PageLoad about:home :extd Pushbullet
 autocmd PageLoad about:home :exte Pushbullet

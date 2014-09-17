@@ -3,17 +3,24 @@
 XUSERFILESEARCHPATH=/home/andrew/.app-defaults/%N%C
 export XUSERFILESEARCHPATH
 
-xrandr --output VGA1 --mode 1920x1200 --rate 59.9 --pos 0x0 --primary &
-xrandr --output LVDS1 --mode 1280x800 --rate 59.9 --pos 1920x400 &
-
 eval `ssh-agent`
 
 dropbox start -i &
 
 xset mouse 2/1 0 &
 
+syndaemon -K -i 1 -d &
+
 [ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap &
 
-sh ~/.fehbg &
+[ -f ~/.xbindkeysrc ] && xbindkeys &
 
 [ -f ~/.Xresources ] && xrdb ~/.Xresources &
+
+[ -f ~/.screenlayout/auto-config.sh ] && srandrd ~/.screenlayout/auto-config.sh && ~/.screenlayout/auto-config.sh &
+
+[ -f ~/.fehbg] && ~/.fehbg &
+
+start-pulseaudio-x11
+pasystray &
+nm-applet &

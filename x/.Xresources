@@ -3,14 +3,15 @@
 
 URxvt*buffered: true
 URxvt*cursorBlink: true
+!URxvt*font: xft:DejaVuSansMono:size=9:antialias=true
 URxvt*font: xft:DejaVuSansMono for Powerline:size=9:antialias=true
-URxvt*letterSpace: -1
+URxvt*letterSpace:0
 URxvt*depth: 32
 URxvt*borderless: 1
 URxvt*scrollBar: false
 URxvt*saveLines: 5000
 URxvt*termName: rxvt-unicode
-URxvt.perl-ext-common: default,matcher
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard
 URxvt.urlLauncher: xdg-open
 URxvt.matcher.button: 1
 
@@ -60,28 +61,28 @@ URxvt.matcher.button: 1
 !
 ! URxvt*background: S_base03
 
-URxvt*background: S_base03
-URxvt*foreground: S_base0
-URxvt*fading: 40
-URxvt*fadeColor: S_base03
-URxvt*cursorColor: S_base1
-URxvt*pointerColorBackground: S_base01
-URxvt*pointerColorForeground: S_base1
+*background: S_base03
+*foreground: S_base0
+*fading: 40
+*fadeColor: S_base03
+*cursorColor: S_base1
+*pointerColorBackground: S_base01
+*pointerColorForeground: S_base1
 
-URxvt*color0: S_base02
-URxvt*color1: S_red
-URxvt*color2: S_green
-URxvt*color3: S_yellow
-URxvt*color4: S_blue
-URxvt*color5: S_magenta
-URxvt*color6: S_cyan
-URxvt*color7: S_base2
-URxvt*color9: S_orange
-URxvt*color8: S_base03
-URxvt*color10: S_base01
-URxvt*color11: S_base00
-URxvt*color12: S_base0
-URxvt*color13: S_violet
-URxvt*color14: S_base1
-URxvt*color15: S_base3
+*color0: S_base02
+*color1: S_red
+*color2: S_green
+*color3: S_yellow
+*color4: S_blue
+*color5: S_magenta
+*color6: S_cyan
+*color7: S_base2
+*color9: S_orange
+*color8: S_base03
+*color10: S_base01
+*color11: S_base00
+*color12: S_base0
+*color13: S_violet
+*color14: S_base1
+*color15: S_base3
 
