@@ -25,4 +25,4 @@ start-pulseaudio-x11
 
 eval `ssh-agent`
 
-./.starttray.sh &
+~/.starttray.sh &
