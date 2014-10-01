@@ -1,17 +1,17 @@
-#!/bin/bash
+#!/bin/zsh
 
 XUSERFILESEARCHPATH=/home/andrew/.app-defaults/%N%C
 export XUSERFILESEARCHPATH
 
-eval `ssh-agent`
-
-dropbox start -i &
+unset SSH_ASKPASS
 
 xset mouse 2/1 0 &
 
 syndaemon -K -i 1 -d &
 
-[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap &
+#[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap &
+
+xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/default $DISPLAY
 
 [ -f ~/.xbindkeysrc ] && xbindkeys &
 
@@ -22,5 +22,7 @@ syndaemon -K -i 1 -d &
 [ -f ~/.fehbg] && ~/.fehbg &
 
 start-pulseaudio-x11
-pasystray &
-nm-applet &
+
+eval `ssh-agent`
+
+./.starttray.sh &
