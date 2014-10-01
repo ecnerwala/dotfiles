@@ -20,6 +20,7 @@ Plugin 'Rip-Rip/clang_complete'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
 Plugin 'bling/vim-airline'
+Plugin 'bling/vim-bufferline'
 Plugin 'lukaszkorecki/workflowish'
 
 syntax on
