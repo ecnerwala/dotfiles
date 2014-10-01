@@ -92,3 +92,16 @@ alias pianobar='rm ~/.config/pianobar/out; pianobar | tee ~/.config/pianobar/out
 alias kpcli-my='kpcli --kdb=/home/andrew/Dropbox/keepass2/Database.kdbx --key=/home/andrew/Dropbox/keepass2/pwsafe.key'
 
 unalias gp
+
+unset SSH_ASKPASS
+
+function mkcd {
+  if [ ! -n "$1" ]; then
+    echo "Enter a directory name"
+  elif [ -d $1 ]; then
+    echo "\`$1' already exists"
+	cd $1
+  else
+    md $1 && cd $1
+  fi
+}
