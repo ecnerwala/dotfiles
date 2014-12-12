@@ -2,4 +2,5 @@
 dropbox start -i &
 pasystray &
 nm-applet &
-fbxkb &
+xxkb &
+parcellite &

@@ -31,10 +31,13 @@ set softtabstop=4
 set shiftwidth=4
 set tabstop=4
 set noexpandtab
-set nu
+set number
 set ruler
+set showcmd
 set errorformat^=%-GIn\ file\ included\ %.%#
 set foldmethod=syntax
+
+set nojoinspaces
 
 set mouse=a
 
@@ -104,6 +107,8 @@ let g:airline_powerline_fonts = 1
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_CompileRule_pdf='latexmk -pdf -synctex=1'
+
+set printoptions+=paper:letter
 
 let hostfile= $HOME . '/vimrc-' . hostname()
 if filereadable(hostfile)
