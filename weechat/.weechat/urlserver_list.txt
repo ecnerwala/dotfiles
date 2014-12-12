@@ -1,5 +1,0 @@
-{
-  0: ('18/09/14 18:40:24', 'LeeMracek_G', 'irc.&bitlbee.LeeMracek_G', 'http://www.google.com', 'LeeMracek_G\thttp://www.google.com'),
-  1: ('21/09/14 13:39:11', 'root', 'irc.&bitlbee.&bitlbee', 'https://plus.google.com/107660711742983152859', 'root\tHomepage: https://plus.google.com/107660711742983152859'),
-  2: ('21/09/14 13:39:11', 'root', 'irc.&bitlbee.&bitlbee', 'https://plus.google.com/107660711742983152859', '@root\tHomepage: https://plus.google.com/107660711742983152859 [ http://localhost:1234/1 ]'),
-}
