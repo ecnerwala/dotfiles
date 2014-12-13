@@ -47,7 +47,7 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history)
+plugins=(git git-flow history)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -107,3 +107,5 @@ function mkcd {
     md $1 && cd $1
   fi
 }
+
+unset GREP_OPTIONS
