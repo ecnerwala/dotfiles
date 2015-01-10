@@ -191,6 +191,10 @@
 	appname="notify-send"
 	format="%s\n%b"
 
+[linconnect]
+	appname="com.willhauck.linconnect"
+    format = "<i>linconnect</i> - <b>%s</b>\n%b"
+
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
