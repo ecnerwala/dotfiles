@@ -23,6 +23,8 @@ xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/default $DISPLAY
 
 start-pulseaudio-x11
 
+linconnect-server &
+
 eval `ssh-agent`
 
 ~/.starttray.sh &
