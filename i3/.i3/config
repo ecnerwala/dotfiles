@@ -154,43 +154,29 @@ bindsym $mod+Escape exec --no-startup-id i3lock -d -c 000000
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+	# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+	# Pressing left will shrink the window’s width.
+	# Pressing right will grow the window’s width.
+	# Pressing up will shrink the window’s height.
+	# Pressing down will grow the window’s height.
+	bindsym h resize shrink width 10 px or 10 ppt
+	bindsym j resize grow height 10 px or 10 ppt
+	bindsym k resize shrink height 10 px or 10 ppt
+	bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+	# same bindings, but for the arrow keys
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-		status_command i3status
-		tray_output primary
-		#status_command conky
-}
-
-for_window [class="Plasma-desktop"] border none
-for_window [class="krunner"] border none
-for_window [class="Kmix"] floating enable;
-for_window [class="Plasmoidviewer"] floating enable;
-for_window [class="Klipper"] floating enable; border none
 
 # Mark support
 bindsym $mod+m exec --no-startup-id i3-input -F 'mark %s' -l 1 -P 'Mark: '
@@ -198,3 +184,56 @@ bindsym $mod+Shift+M exec --no-startup-id i3-input -F 'mark %s' -P 'Mark: '
 bindsym $mod+Ctrl+m exec --no-startup-id i3-input -F 'unmark %s' -P 'Unmark: '
 bindsym $mod+apostrophe exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Go to: '
 bindsym $mod+Shift+quotedbl exec --nostartup-id i3-input -F '[con_mark="%s"] focus' -P 'Go to: '
+
+# KDE support
+for_window [class="Plasma-desktop"] border none
+for_window [class="krunner"] border none
+for_window [class="Kmix"] floating enable;
+for_window [class="Plasmoidviewer"] floating enable;
+for_window [class="Klipper"] floating enable; border none
+
+
+# solarized accents
+set $yellow #b58900
+set $orange #cb4b16
+set $red #dc322f
+set $magenta #d33682
+set $violet #6c71c4
+set $blue #268bd2
+set $cyan #2aa198
+set $green #859900
+# solarized dark
+set $baseA3 #002b36
+set $baseA2 #073642
+set $baseA1 #586e75
+set $baseA0 #657b83
+set $baseB0 #839496
+set $baseB1 #93a1a1
+set $baseB2 #eee8d5
+set $baseB3 #fdf6e3
+set $custom #1c5766
+
+# clientclass border backgr. text indicator
+client.focused $custom $custom $baseB3 $green
+client.focused_inactive $baseA2 $baseA2 $baseB1 $green
+client.unfocused $baseA3 $baseA3 $baseB1 $green
+client.urgent $red $red $baseB3 $green
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    colors {
+        background $baseA3
+        statusline $baseB3
+        separator $baseB1
+
+        focused_workspace  $custom $custom $baseB3
+        active_workspace   $baseA2 $custom $baseB1
+        inactive_workspace $baseA3 $baseA3 $baseB1
+        urgent_workspace   $red $red $baseB3
+    }
+
+	status_command i3status
+	tray_output primary
+	#status_command conky
+}
