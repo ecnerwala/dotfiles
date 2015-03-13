@@ -215,7 +215,7 @@ set $custom #1c5766
 
 # clientclass border backgr. text indicator
 client.focused $custom $custom $baseB3 $green
-client.focused_inactive $baseA2 $baseA2 $baseB1 $green
+client.focused_inactive $baseA2 $baseA2 $baseB2 $green
 client.unfocused $baseA3 $baseA3 $baseB1 $green
 client.urgent $red $red $baseB3 $green
 
