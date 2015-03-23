@@ -1,0 +1,11 @@
+XXkb.image.path: /home/andrew/.xxkb
+XXkb.mainwindow.type: tray
+XXkb.mainwindow.enable: yes
+XXkb.mainwindow.geometry: 20x20+0+0
+XXkb.mainwindow.image.1: us.xpm
+XXkb.mainwindow.image.2: es.xpm
+XXkb.mainwindow.image.3: us.xpm
+XXkb.mainwindow.image.4: us.xpm
+XXkb.mainwindow.label.enable: no
+XXkb.controls.mainwindow_delete: no
+XXkb.button.enable: no
