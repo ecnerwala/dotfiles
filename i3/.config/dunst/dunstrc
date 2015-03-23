@@ -123,6 +123,12 @@
     # browser for opening urls in context menu
     browser = /usr/bin/firefox -new-tab
 
+	# Align icons left/right/off.
+	icon_position = left
+
+	# Paths to default icons. Make sure these exist on your system.
+	icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:/tmp
+
 [frame]
     width = 3
     color = "#aaaaaa"
@@ -183,8 +189,15 @@
 # fitting options for rules.
 
 [Firefox]
-	appname="https://*#*tag:*"
-    format = "<i>Iceweasel</i> - <b>%s</b>\n%b"
+	appname="Firefox"
+	format = "%i\n<i>Firefox</i> - <b>%s</b>\n%b"
+
+# put after firefox, applied later
+[Pushbullet]
+	appname="Firefox"
+	body="* via Pushbullet at *"
+	format = "%i\n<i>Pushbullet</i> - <b>%s</b>\n%b"
+
 
 # called notify-send directly, skip appname
 [notify-send]
@@ -196,7 +209,7 @@
     format = "<i>linconnect</i> - <b>%s</b>\n%b"
 
 #[espeak]
-#    summary = "*"
+#    summary = "*" 
 #    script = dunst_espeak.sh
 
 #[script-test]
