@@ -1,5 +1,5 @@
 #!/bin/zsh
-dropbox start -i &
+dropbox-cli start -i &
 pasystray &
 nm-applet &
 xxkb &

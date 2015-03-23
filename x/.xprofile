@@ -19,11 +19,9 @@ xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/default $DISPLAY
 
 [ -f ~/.screenlayout/auto-config.sh ] && srandrd ~/.screenlayout/auto-config.sh && ~/.screenlayout/auto-config.sh &
 
-[ -f ~/.fehbg] && ~/.fehbg &
+[ -f ~/.fehbg ] && ~/.fehbg &
 
 start-pulseaudio-x11
-
-linconnect-server &
 
 eval `ssh-agent`
 
