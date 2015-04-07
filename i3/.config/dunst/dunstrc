@@ -208,6 +208,11 @@
 	appname="com.willhauck.linconnect"
     format = "<i>linconnect</i> - <b>%s</b>\n%b"
 
+[hipchat]
+	appname = HipChat
+	urgency = low
+	timeout = 1
+
 #[espeak]
 #    summary = "*" 
 #    script = dunst_espeak.sh
