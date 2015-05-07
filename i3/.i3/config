@@ -189,9 +189,12 @@ bindsym $mod+Shift+quotedbl exec --nostartup-id i3-input -F '[con_mark="%s"] foc
 for_window [class="Plasma-desktop"] border none
 for_window [class="krunner"] border none
 for_window [class="Kmix"] floating enable;
-for_window [class="Plasmoidviewer"] floating enable;
+for_window [class="Plasmoidviewer"] floating enable
 for_window [class="Klipper"] floating enable; border none
 
+for_window [window_role="pop-up"] floating enabled
+for_window [window_role="app"] floating enabled
+for_window [window_role="bubble"] floating enabled
 
 # solarized accents
 set $yellow #b58900
