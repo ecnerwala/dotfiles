@@ -97,6 +97,7 @@ call WrapOn()
 
 set t_Co=16
 colorscheme solarized
+set background=dark
 
 set spellfile=~/.vim/spell/en.utf-8.add
 
