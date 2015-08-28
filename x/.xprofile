@@ -19,7 +19,7 @@ xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/default $DISPLAY
 
 [ -f ~/.screenlayout/auto-config.sh ] && srandrd ~/.screenlayout/auto-config.sh && ~/.screenlayout/auto-config.sh &
 
-xrandr --output eDP-0 --primary &
+xrandr --output eDP1 --primary &
 
 [ -f ~/.fehbg ] && ~/.fehbg &
 
