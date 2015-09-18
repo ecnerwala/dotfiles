@@ -1,9 +1,9 @@
 [submodule "dircolors/src/dircolors-solarized"]
 	path = dircolors/src/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
-[submodule "vim/.vim/bundle/vundle"]
-	path = vim/.vim/bundle/vundle
-	url = https://github.com/gmarik/vundle.git
+[submodule "vim/.vim/bundle/Vundle.vim"]
+	path = vim/.vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim
 [submodule "mutt/.mutt/mutt-colors-solarized"]
 	path = mutt/.mutt/mutt-colors-solarized
 	url = https://github.com/altercation/mutt-colors-solarized.git

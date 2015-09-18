@@ -1,11 +1,11 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 
-execute vundle#rc()
+call vundle#begin()
 
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'Raimondi/delimitMate'
@@ -22,6 +22,8 @@ Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 Plugin 'lukaszkorecki/workflowish'
+
+call vundle#end()
 
 syntax on
 filetype plugin indent on
