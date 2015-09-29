@@ -1,0 +1,12 @@
+[user]
+	email = he.andrew.mail@gmail.com
+	name = Andrew He
+[push]
+	default = simple
+[alias]
+	st = status
+	fe = fetch
+	co = checkout
+	cm = commit
+	ca = commit -a
+	caa = commit -a --amend
