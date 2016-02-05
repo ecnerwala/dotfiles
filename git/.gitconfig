@@ -7,6 +7,12 @@
 	st = status
 	fe = fetch
 	co = checkout
+	br = branch
 	cm = commit
 	ca = commit -a
 	caa = commit -a --amend
+	rb = rebase
+[core]
+	excludesfile = /home/andrew/.gitignore_global
+[merge]
+	conflictstyle = diff3
