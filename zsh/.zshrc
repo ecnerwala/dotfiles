@@ -93,6 +93,7 @@ alias kpcli-my='kpcli --kdb=/home/andrew/Dropbox/keepass2/Database.kdbx --key=/h
 
 alias rxvt-unicode='urxvt'
 
+
 unalias gp
 
 unset SSH_ASKPASS
@@ -109,3 +110,6 @@ function mkcd {
 }
 
 unset GREP_OPTIONS
+
+# NVM setup
+source /usr/share/nvm/init-nvm.sh
