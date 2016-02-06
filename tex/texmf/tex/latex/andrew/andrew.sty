@@ -1,0 +1,238 @@
+\ProvidesPackage{andrew}
+\usepackage{amsmath,amssymb,amsthm,amsfonts,bm}
+%\usepackage{titling}
+\usepackage{fancyhdr,extramarks,lastpage}
+\usepackage{url}
+\usepackage{complexity}
+\usepackage[colorlinks,urlcolor=blue,citecolor=blue,breaklinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{nicefrac,units,siunitx}
+\usepackage[version=3]{mhchem}
+\usepackage{mathrsfs,mathtools,xparse}
+\usepackage{todonotes}
+
+\usetikzlibrary{arrows,arrows.meta}
+\usetikzlibrary{automata,positioning}
+
+%
+% Various Helper Commands
+%
+
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\eps}{\varepsilon}
+
+\def\ZZ{\mathbb{Z}}
+\def\RR{\mathbb{R}}
+\def\QQ{\mathbb{Q}}
+
+% Calligraphic and blackboard type letters.
+
+\def\cA{{\cal A}}
+\def\cB{{\cal B}}
+\def\cC{{\cal C}}
+\def\cD{{\cal D}}
+\def\cE{{\cal E}}
+\def\cF{{\cal F}}
+\def\cG{{\cal G}}
+\def\cH{{\cal H}}
+\def\cI{{\cal I}}
+\def\cJ{{\cal J}}
+\def\cK{{\cal K}}
+\def\cL{{\cal L}}
+\def\cM{{\cal M}}
+\def\cN{{\cal N}}
+\def\cO{{\cal O}}
+\def\cP{{\cal P}}
+\def\cQ{{\cal Q}}
+\def\cR{{\cal R}}
+\def\cS{{\cal S}}
+\def\cT{{\cal T}}
+\def\cU{{\cal U}}
+\def\cV{{\cal V}}
+\def\cW{{\cal W}}
+\def\cX{{\cal X}}
+\def\cY{{\cal Y}}
+\def\cZ{{\cal Z}}
+%%%%%%%%%%%%%%%%%
+\def\bbC{{\mathbb C}}
+\def\bbE{{\mathbb E}}
+\def\bbF{{\mathbb F}}
+\def\bbG{{\mathbb G}}
+\def\bbM{{\mathbb M}}
+\def\bbN{{\mathbb N}}
+\def\bbQ{{\mathbb Q}}
+\def\bbR{{\mathbb R}}
+\def\bbV{{\mathbb V}}
+\def\bbZ{{\mathbb Z}}
+
+% bold vectors
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+% Absolute value
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+% Rounding
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\round{\lfloor}{\rceil}
+
+% Probability
+\DeclareMathOperator*{\EV}{\mathbb{E}}
+\let\Pr\relax
+\DeclareMathOperator*{\Pr}{\mathbb{P}}
+\DeclareMathOperator*{\Var}{Var}
+\DeclareMathOperator*{\Cov}{Cov}
+\DeclareMathOperator*{\Bias}{Bias}
+
+% Theorems
+%%%%%%%%%%
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem*{algorithm*}{Algorithm}
+
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem*{observation*}{Observation}
+
+\theoremstyle{definition}
+
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem*{claim*}{Claim}
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem*{conjecture*}{Conjecture}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem*{fact*}{Fact}
+
+\newtheorem{case}[theorem]{Case}
+\newtheorem*{case*}{Case}
+
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem*{assumption*}{Assumption}
+
+% Remark-style theorems
+
+\theoremstyle{remark}
+
+\newtheorem{note}[theorem]{Note}
+\newtheorem*{note*}{Note}
+
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+
+
+% Subproof with shaded square, subsubproof with //
+\newenvironment{subproof}[1][\proofname]{%
+  \renewcommand{\qedsymbol}{$\blacksquare$}%
+  \begin{proof}[#1]%
+}{%
+  \end{proof}%
+}
+\newenvironment{subsubproof}[1][\proofname]{%
+  \renewcommand{\qedsymbol}{//}%
+  \begin{proof}[#1]%
+}{%
+  \end{proof}%
+}
+
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+
+\pagestyle{fancy}
+\lhead{\textbf{\authorName}
+\ifx\collaborators\undefined\else\\\collaborators\fi}
+\rhead{\nouppercase{\leftmark}}
+\chead{\courseNumber: \handoutName}
+\cfoot{\thepage~of~\pageref{LastPage}}
+
+\title{
+	\textmd{\textbf{\courseName:\ \handoutName}}\\
+	\vspace{0.1in}\large{\textit{\professor,\ \term}}
+}
+
+\author{\textbf{\authorName}\\
+\ifx\collaborators\undefined
+No collaborators
+\else
+Collaborators:\\\normalsize{\collaborators}
+\fi
+}
+
+\date{}
+
+\newcommand{\handout}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      \hbox to 6.00in { {\bf #1} \hfill #2 }
+      \vspace{4mm}
+      \hbox to 6.00in { {\Large \hfill #5  \hfill} }
+      \vspace{2mm}
+      \hbox to 6.00in { {\em #3 \hfill #4} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\titlebox}{
+	\handout{\courseName}{\term}{\professor}{
+\textbf{\authorName} with 
+\ifx\collaborators\undefined
+no collaborators
+\else
+\normalsize{\collaborators}
+\fi
+	}{\handoutName}
+	\thispagestyle{empty}
+}
+
+\newcommand{\lecture}[1]{
+	\renewcommand{\handoutName}{Lecture #1}
+	\titlebox
+}
