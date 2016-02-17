@@ -5,6 +5,7 @@
 \usepackage{url}
 \usepackage{complexity}
 \usepackage[colorlinks,urlcolor=blue,citecolor=blue,breaklinks]{hyperref}
+\usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{verbatim}
@@ -12,6 +13,7 @@
 \usepackage{nicefrac,units,siunitx}
 \usepackage[version=3]{mhchem}
 \usepackage{mathrsfs,mathtools,xparse}
+\usepackage{listings}
 \usepackage{todonotes}
 
 \usetikzlibrary{arrows,arrows.meta}
@@ -179,27 +181,26 @@
 \marginparwidth 0.5in
 \textwidth 6.5in
 
-\parindent 0in
+%\parindent 0in
 \parskip 1.5ex
 
 \pagestyle{fancy}
 \lhead{\textbf{\authorName}
-\ifx\collaborators\undefined\else\\\collaborators\fi}
+\ifdef{\collaborators}{\\\ifdefempty{\collaborators}{No collaborators}{\collaborators}}{}}
 \rhead{\nouppercase{\leftmark}}
-\chead{\courseNumber: \handoutName}
-\cfoot{\thepage~of~\pageref{LastPage}}
+\cfoot{\courseNumber: \handoutName \ ---\ Page \thepage~of~\pageref{LastPage}}
 
 \title{
 	\textmd{\textbf{\courseName:\ \handoutName}}\\
 	\vspace{0.1in}\large{\textit{\professor,\ \term}}
 }
 
-\author{\textbf{\authorName}\\
-\ifx\collaborators\undefined
-No collaborators
-\else
-Collaborators:\\\normalsize{\collaborators}
-\fi
+\author{\textbf{\authorName}
+\ifdef{\collaborators}{
+	\\\ifdefempty{\collaborators}
+	{No collaborators}
+	{Collaborators:\\\normalsize{\collaborators}}
+}{}
 }
 
 \date{}
@@ -221,14 +222,8 @@ Collaborators:\\\normalsize{\collaborators}
 }
 
 \newcommand{\titlebox}{
-	\handout{\courseName}{\term}{\professor}{
-\textbf{\authorName} with 
-\ifx\collaborators\undefined
-no collaborators
-\else
-\normalsize{\collaborators}
-\fi
-	}{\handoutName}
+	\handout{\courseName}{\term}{\professor}{\textbf{\authorName}\ifdef{\collaborators}{
+			with \ifdefempty{\collaborators}{no collaborators}{\collaborators}}{}}{\handoutName}
 	\thispagestyle{empty}
 }
 
