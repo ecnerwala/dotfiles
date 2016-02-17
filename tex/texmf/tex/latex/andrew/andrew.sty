@@ -19,6 +19,9 @@
 \usetikzlibrary{arrows,arrows.meta}
 \usetikzlibrary{automata,positioning}
 
+% Noun case
+\newcommand{\noun}[1]{\textsf{#1}}
+
 %
 % Various Helper Commands
 %
@@ -77,6 +80,10 @@
 % Absolute value
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+% Rounding
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\round{\lfloor}{\rceil}
 % Swap the definition of \abs* and \norm*, so that \abs
 % and \norm resizes the size of the brackets, and the
 % starred version does not.
@@ -86,12 +93,17 @@
 %
 \let\oldnorm\norm
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+
+\let\oldfloor\floor
+\def\floor{\@ifstar{\oldfloor}{\oldfloor*}}
+
+\let\oldceil\ceil
+\def\ceil{\@ifstar{\oldceil}{\oldceil*}}
+
+\let\oldround\round
+\def\round{\@ifstar{\oldround}{\oldround*}}
 \makeatother
 
-% Rounding
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
-\DeclarePairedDelimiter\round{\lfloor}{\rceil}
 
 % Probability
 \DeclareMathOperator*{\EV}{\mathbb{E}}
