@@ -7,6 +7,7 @@
 \usepackage[colorlinks,urlcolor=blue,citecolor=blue,breaklinks]{hyperref}
 \usepackage{etoolbox}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{tikz}
 \usepackage{verbatim}
 \usepackage{enumitem}
@@ -17,7 +18,13 @@
 \usepackage{todonotes}
 
 \usetikzlibrary{arrows,arrows.meta}
+\usetikzlibrary{calc}
 \usetikzlibrary{automata,positioning}
+
+\tikzset{
+    vertex/.style={circle,draw,minimum size=0.75cm,node distance=1.5cm},
+    edge/.style={->,>=latex},
+}
 
 % Noun case
 \newcommand{\noun}[1]{\textsf{#1}}
@@ -33,6 +40,8 @@
 \def\ZZ{\mathbb{Z}}
 \def\RR{\mathbb{R}}
 \def\QQ{\mathbb{Q}}
+\def\FF{\mathbb{F}}
+\def\NN{\mathbb{N}}
 
 % Calligraphic and blackboard type letters.
 
