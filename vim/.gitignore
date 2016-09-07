@@ -1,3 +1,4 @@
 .vim/bundle/*
 .vim/cache/*
 !.vim/bundle/Vundle.vim
+**/*.pyc
