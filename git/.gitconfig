@@ -4,7 +4,7 @@
 [push]
 	default = simple
 [alias]
-	st = status
+	st = status -sb
 	fe = fetch
 	co = checkout
 	br = branch
@@ -12,7 +12,12 @@
 	ca = commit -a
 	caa = commit -a --amend
 	rb = rebase
+	git = !git
 [core]
 	excludesfile = /home/andrew/.gitignore_global
 [merge]
 	conflictstyle = diff3
+[pull]
+	rebase = true
+[rebase]
+	autosquash = true
