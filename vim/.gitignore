@@ -2,3 +2,4 @@
 .vim/cache/*
 !.vim/bundle/Vundle.vim
 **/*.pyc
+.config/nvim/plugged
