@@ -43,7 +43,8 @@ set mouse=a
 
 cmap w!! w !sudo tee > /dev/null %
 
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let delimitMate_expand_cr = 1
 
@@ -108,7 +109,7 @@ if filereadable(hostfile)
 endif
 
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
 
 if &term =~ '^xterm\\|rxvt'
   " solid underscore
