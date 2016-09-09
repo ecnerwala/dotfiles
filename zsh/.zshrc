@@ -93,6 +93,8 @@ alias kpcli-my='kpcli --kdb=/home/andrew/Dropbox/keepass2/Database.kdbx --key=/h
 
 alias rxvt-unicode='urxvt'
 
+alias vim="nvim"
+alias oldvim="vim"
 
 unalias gp
 
