@@ -86,7 +86,6 @@ function ToggleWrap()
 endfunction
 call WrapOn()
 
-set t_Co=16
 colorscheme solarized
 set background=dark
 

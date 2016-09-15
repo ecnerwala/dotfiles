@@ -9,7 +9,7 @@ URxvt*letterSpace: -2
 URxvt*borderless: 1
 URxvt*scrollBar: false
 URxvt*saveLines: 5000
-URxvt*termName: rxvt-unicode
+!URxvt*termName: rxvt-unicode-256color
 URxvt.perl-ext-common: default,selection-to-clipboard,url-select
 URxvt.keysym.C-i: perl:url-select:select_next
 URxvt.url-select.launcher: /usr/bin/xdg-open
