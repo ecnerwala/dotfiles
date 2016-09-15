@@ -122,6 +122,10 @@ if &term =~ '^xterm\\|rxvt'
   " 6 -> solid vertical bar
 endif
 
+if has('nvim')
+  tnoremap <Leader><Esc> <C-\><C-n>
+endif
+
 let g:ycm_enable_diagnostic_signs=0
 " Thanks to http://superuser.com/questions/558876/how-can-i-make-the-sign-column-show-up-all-the-time-even-if-no-signs-have-been-a
 "autocmd BufEnter * sign define dummy
