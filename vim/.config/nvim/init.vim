@@ -16,6 +16,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 Plug 'lukaszkorecki/workflowish'
 Plug 'tpope/vim-sleuth'
+Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 call plug#end()
