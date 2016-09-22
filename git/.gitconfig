@@ -1,3 +1,5 @@
+[core]
+	editor = vim
 [user]
 	email = he.andrew.mail@gmail.com
 	name = Andrew He
@@ -21,3 +23,5 @@
 	rebase = true
 [rebase]
 	autosquash = true
+[gitsh]
+	defaultCommand = st
