@@ -89,8 +89,10 @@ function ToggleWrap()
 endfunction
 call WrapOn()
 
-colorscheme solarized
-set background=dark
+if $TERM =~ '^rxvt'
+  set background=dark
+  colorscheme solarized
+endif
 
 set spellfile=~/.vim/spell/en.utf-8.add
 
@@ -112,7 +114,7 @@ endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
 
-if &term =~ '^xterm\\|rxvt'
+if $TERM =~ '^xterm\\|rxvt'
   " solid underscore
   let &t_SI .= "\<Esc>[4 q"
   " solid block
