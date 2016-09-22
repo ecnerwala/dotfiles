@@ -17,7 +17,9 @@ Plug 'bling/vim-bufferline'
 Plug 'lukaszkorecki/workflowish'
 Plug 'tpope/vim-sleuth'
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'majutsushi/tagbar'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 
 call plug#end()
 
