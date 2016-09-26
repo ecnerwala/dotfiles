@@ -96,6 +96,12 @@ alias rxvt-unicode='urxvt'
 alias vim="nvim"
 alias oldvim="vim"
 
+alias mosh-athena='mosh --server="athrun mosh_project mosh-server"'
+
+function mosh-athena {
+    md $1 && cd $1
+}
+
 unalias gp
 
 unset SSH_ASKPASS
