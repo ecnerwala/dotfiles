@@ -43,6 +43,9 @@ set nojoinspaces
 
 set mouse=a
 
+set autoread
+autocmd BufEnter,FocusGained * checktime
+
 cmap w!! w !sudo tee > /dev/null %
 
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
