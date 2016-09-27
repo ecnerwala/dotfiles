@@ -22,6 +22,7 @@
 [pull]
 	rebase = true
 [rebase]
-	autosquash = true
+	autoSquash = true
+	autoStash = true
 [gitsh]
 	defaultCommand = st
