@@ -47,7 +47,7 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow history)
+plugins=(git history)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -123,8 +123,9 @@ function mkcd {
 unset GREP_OPTIONS
 
 # NVM setup
-source /usr/share/nvm/init-nvm.sh
+alias nvm-init='source /usr/share/nvm/init-nvm.sh'
 
+# virtualenv wrapper setup
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/projects
-source /usr/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper_lazy.sh
