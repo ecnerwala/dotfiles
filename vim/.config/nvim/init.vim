@@ -92,10 +92,8 @@ function ToggleWrap()
 endfunction
 call WrapOn()
 
-if $TERM =~ '^rxvt'
-  set background=dark
-  colorscheme solarized
-endif
+set background=dark
+colorscheme solarized
 
 set spellfile=~/.vim/spell/en.utf-8.add
 
