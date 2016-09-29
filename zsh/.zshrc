@@ -81,6 +81,9 @@ export PATH="/home/andrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+[[ -e ~/.dircolors ]] && eval `dircolors ~/.dircolors`
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 alias e='vim'
 alias cls='clear'
 
