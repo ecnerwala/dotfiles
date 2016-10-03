@@ -115,16 +115,25 @@ endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
 
-if $TERM =~ '^xterm\\|rxvt'
-  " solid underscore
-  let &t_SI .= "\<Esc>[4 q"
-  " solid block
-  let &t_EI .= "\<Esc>[2 q"
-  " 1 or 0 -> blinking block
-  " 3 -> blinking underscore
-  " Recent versions of xterm (282 or above) also support
-  " 5 -> blinking vertical bar
-  " 6 -> solid vertical bar
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+else
+  if $TERM =~ '^xterm\|rxvt'
+    " Insert mode
+    let &t_SI = "\<Esc>[5 q"
+    " Replace mode
+    let &t_SR = "\<Esc>[3 q"
+    " Normal mode
+    let &t_EI = "\<Esc>[0 q"
+
+    " 1 or 0 -> blinking block
+    " 2 -> solid block
+    " 3 -> blinking underscore
+    " 4 -> solid underscore
+    " Recent versions of xterm (282 or above) also support
+    " 5 -> blinking vertical bar
+    " 6 -> solid vertical bar
+  endif
 endif
 
 if has('nvim')
