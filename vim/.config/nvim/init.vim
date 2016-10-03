@@ -126,7 +126,7 @@ else
     " Replace mode
     let &t_SR = "\<Esc>[3 q"
     " Normal mode
-    let &t_EI = "\<Esc>[0 q"
+    let &t_EI = "\<Esc>[2 q"
 
     " 1 or 0 -> blinking block
     " 2 -> solid block
