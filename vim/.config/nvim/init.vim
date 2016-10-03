@@ -101,6 +101,8 @@ set laststatus=2
 
 let g:airline_powerline_fonts = 1
 
+let g:NERDAltDelims_c = 1
+
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_CompileRule_pdf='latexmk -pdf -synctex=1'
