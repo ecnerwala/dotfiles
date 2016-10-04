@@ -37,6 +37,8 @@ set showcmd
 set errorformat^=%-GIn\ file\ included\ %.%#
 set foldmethod=syntax
 
+set splitright splitbelow
+
 set title
 
 set nojoinspaces
