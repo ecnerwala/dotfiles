@@ -56,7 +56,10 @@
   XF86MonBrightnessUp
 
 "arandr"
-  XF86Display
+  XF86Display + Release
+
+"scrot -s -z -e 'mv $f ~/screenshots'"
+  Print + Release
 
 # Examples of commands:
 

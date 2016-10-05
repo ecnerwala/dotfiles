@@ -13,7 +13,7 @@ syndaemon -K -i 1 -d &
 
 xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/default $DISPLAY
 
-[ -f ~/.xbindkeysrc ] && xbindkeys &
+[ -f ~/.xbindkeysrc ] && xbindkeys -p &
 
 [ -f ~/.Xresources ] && xrdb ~/.Xresources &
 
