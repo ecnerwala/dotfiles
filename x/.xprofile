@@ -11,7 +11,7 @@ syndaemon -K -i 1 -d &
 
 #[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap &
 
-xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/default $DISPLAY
+#xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/default $DISPLAY
 
 [ -f ~/.xbindkeysrc ] && xbindkeys -p &
 
