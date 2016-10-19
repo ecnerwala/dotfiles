@@ -39,6 +39,9 @@ set foldmethod=syntax
 
 set splitright splitbelow
 
+" Necessary for terminal buffers not to die
+set hidden
+
 set title
 
 set nojoinspaces
@@ -59,38 +62,38 @@ command Bc bp|bd #
 
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
 function WrapOn()
-	setlocal wrap linebreak nolist
-	set virtualedit=
-	setlocal display+=lastline
-	noremap  <buffer> <silent> <Up>   g<Up>
-	noremap  <buffer> <silent> <Down> g<Down>
-	noremap  <buffer> <silent> <Home> g<Home>
-	noremap  <buffer> <silent> <End>  g<End>
-	inoremap <buffer> <silent> <Up>   <C-o>gk
-	inoremap <buffer> <silent> <Down> <C-o>gj
-	inoremap <buffer> <silent> <Home> <C-o>g<Home>
-	inoremap <buffer> <silent> <End>  <C-o>g<End>
+  setlocal wrap linebreak nolist
+  set virtualedit=
+  setlocal display+=lastline
+  noremap  <buffer> <silent> <Up>   g<Up>
+  noremap  <buffer> <silent> <Down> g<Down>
+  noremap  <buffer> <silent> <Home> g<Home>
+  noremap  <buffer> <silent> <End>  g<End>
+  inoremap <buffer> <silent> <Up>   <C-o>gk
+  inoremap <buffer> <silent> <Down> <C-o>gj
+  inoremap <buffer> <silent> <Home> <C-o>g<Home>
+  inoremap <buffer> <silent> <End>  <C-o>g<End>
 endfunction
 function WrapOff()
-	setlocal nowrap
-	set virtualedit=all
-	silent! nunmap <buffer> <Up>
-	silent! nunmap <buffer> <Down>
-	silent! nunmap <buffer> <Home>
-	silent! nunmap <buffer> <End>
-	silent! iunmap <buffer> <Up>
-	silent! iunmap <buffer> <Down>
-	silent! iunmap <buffer> <Home>
-	silent! iunmap <buffer> <End>
+  setlocal nowrap
+  set virtualedit=all
+  silent! nunmap <buffer> <Up>
+  silent! nunmap <buffer> <Down>
+  silent! nunmap <buffer> <Home>
+  silent! nunmap <buffer> <End>
+  silent! iunmap <buffer> <Up>
+  silent! iunmap <buffer> <Down>
+  silent! iunmap <buffer> <Home>
+  silent! iunmap <buffer> <End>
 endfunction
 function ToggleWrap()
-	if &wrap
-		echo "Wrap OFF"
-		call WrapOff()
-	else
-		echo "Wrap ON"
-		call WrapOn()
-	endif
+  if &wrap
+    echo "Wrap OFF"
+    call WrapOff()
+  else
+    echo "Wrap ON"
+    call WrapOn()
+  endif
 endfunction
 call WrapOn()
 
@@ -113,7 +116,7 @@ set printoptions+=paper:letter
 
 let hostfile= $HOME . '/vimrc-' . hostname()
 if filereadable(hostfile)
-	exe 'source ' . hostfile
+  exe 'source ' . hostfile
 endif
 
 autocmd StdinReadPre * let s:std_in=1
@@ -141,7 +144,8 @@ else
 endif
 
 if has('nvim')
-  tnoremap <Leader><Esc> <C-\><C-n>
+  tnoremap <Leader><Esc> <Esc>
+  tnoremap <Esc> <C-\><C-n>
 endif
 
 let g:ycm_enable_diagnostic_signs=0
