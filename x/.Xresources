@@ -10,11 +10,26 @@ URxvt*borderless: 1
 URxvt*scrollBar: false
 URxvt*saveLines: 5000
 !URxvt*termName: rxvt-unicode-256color
-URxvt.perl-ext-common: default,selection-to-clipboard,url-select
+
+URxvt.perl-ext-common: default,selection-to-clipboard,url-select,fullscreen,font-size
+
 URxvt.keysym.C-i: perl:url-select:select_next
 URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
 URxvt.colorUL: #4682B4
+
+URxvt.keysym.F11: perl:fullscreen:switch
+
+! Changing font size
+URxvt.keysym.C-Up:		perl:font-size:increase
+URxvt.keysym.C-Down:	perl:font-size:decrease
+URxvt.keysym.C-S-Up:    perl:font-size:incglobal
+URxvt.keysym.C-S-Down:  perl:font-size:decglobal
+URxvt.keysym.C-0:		perl:font-size:reset
+
+! Disable Ctrl-Shift for keycap insert
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 ! Solarized color scheme for the X Window System
 !
