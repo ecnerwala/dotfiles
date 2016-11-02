@@ -69,6 +69,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let delimitMate_expand_cr = 1
 
 command Bc bp|bd #
+let g:bufferline_rotate=1
 
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
 function WrapOn()
