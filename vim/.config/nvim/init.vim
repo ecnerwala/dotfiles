@@ -3,23 +3,33 @@ filetype off
 
 call plug#begin()
 
+"Navigation Plugins
 Plug 'scrooloose/nerdtree'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdcommenter'
-Plug 'git://repo.or.cz/vcscommand'
-Plug 'vimwiki'
-Plug 'altercation/vim-colors-solarized'
-Plug 'vim-latex/vim-latex'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'majutsushi/tagbar'
+
+"UI Plugins
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
-Plug 'lukaszkorecki/workflowish'
+Plug 'altercation/vim-colors-solarized'
+
+"Editor plugins
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-sleuth'
-Plug 'SirVer/ultisnips'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+"Language specific
+Plug 'tmhedberg/SimpylFold'
+Plug 'vim-latex/vim-latex'
+
+"Note taking
+Plug 'vimwiki'
+Plug 'lukaszkorecki/workflowish'
 
 call plug#end()
 
