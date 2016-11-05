@@ -125,3 +125,8 @@ alias nvm-init='source /usr/share/nvm/init-nvm.sh'
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/projects
 source /usr/bin/virtualenvwrapper_lazy.sh
+if [ -n "$VIRTUAL_ENV" ]; then
+  . "$VIRTUAL_ENV/bin/activate"
+else
+  #workon default
+fi
