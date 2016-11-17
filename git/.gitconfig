@@ -16,7 +16,7 @@
 	rb = rebase
 	git = !git
 [core]
-	excludesfile = /home/andrew/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [merge]
 	conflictstyle = diff3
 [pull]
