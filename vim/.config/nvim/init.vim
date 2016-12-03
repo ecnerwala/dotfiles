@@ -20,12 +20,13 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-sleuth'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'SirVer/ultisnips'
+Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 "Language specific
-Plug 'tmhedberg/SimpylFold'
-Plug 'vim-latex/vim-latex'
+Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 
 "Note taking
 Plug 'vimwiki'
