@@ -1,5 +1,3 @@
-.vim/bundle/*
-.vim/cache/*
-!.vim/bundle/Vundle.vim
 **/*.pyc
 .config/nvim/plugged
+.config/nvim/autoload/plug.vim.old
