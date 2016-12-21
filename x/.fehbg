@@ -1,0 +1,3 @@
+#!/bin/sh
+#> $ feh --randomize --bg-fill --no-fehbg /usr/share/archlinux/wallpaper/*[^3].*
+> $ feh --randomize --bg-fill --no-fehbg /home/andrew/Desktop/Wallpapers/*
