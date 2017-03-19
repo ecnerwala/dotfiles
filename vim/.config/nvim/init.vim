@@ -76,6 +76,7 @@ let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let delimitMate_expand_cr = 1
+autocmd FileType tex let b:delimitMate_autoclose = 0
 
 command Bc bp|bd #
 let g:bufferline_rotate=1
