@@ -19,6 +19,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-sleuth'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
 Plug 'SirVer/ultisnips'
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
 Plug 'tpope/vim-fugitive'
@@ -26,7 +27,11 @@ Plug 'airblade/vim-gitgutter'
 
 "Language specific
 Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
-Plug 'vim-latex/vim-latex', { 'for': 'tex' }
+Plug 'lervag/vimtex', { 'for': 'tex' }
+
+if !isdirectory("~/dev/mitscript-syntax")
+  Plug '~/dev/mitscript-syntax'
+endif
 
 "Note taking
 Plug 'vimwiki'
@@ -47,6 +52,9 @@ set ruler
 set showcmd
 set errorformat^=%-GIn\ file\ included\ %.%#
 set foldmethod=syntax
+set conceallevel=2
+
+set cindent cinoptions=N-s,g0
 
 set splitright splitbelow
 
@@ -121,8 +129,11 @@ let g:airline_powerline_fonts = 1
 let g:NERDAltDelims_c = 1
 
 let g:tex_flavor='latex'
-let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_CompileRule_pdf='latexmk -pdf -synctex=1'
+let g:vimtex_view_method='zathura'
+if has('nvim')
+  let g:vimtex_latexmk_progname='nvr'
+endif
+let g:vimtex_quickfix_open_on_warning=0
 
 set printoptions+=paper:letter
 
