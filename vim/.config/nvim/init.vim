@@ -29,7 +29,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 
-if !isdirectory("~/dev/mitscript-syntax")
+if isdirectory("~/dev/mitscript-syntax")
   Plug '~/dev/mitscript-syntax'
 endif
 
@@ -175,6 +175,8 @@ if has('nvim')
   tnoremap <Leader><Esc> <Esc>
   tnoremap <Esc> <C-\><C-n>
 endif
+
+let g:easytags_suppress_ctags_warning = 1
 
 let g:ycm_enable_diagnostic_signs=0
 " Thanks to http://superuser.com/questions/558876/how-can-i-make-the-sign-column-show-up-all-the-time-even-if-no-signs-have-been-a
