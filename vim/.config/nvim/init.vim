@@ -118,8 +118,10 @@ function ToggleWrap()
 endfunction
 call WrapOn()
 
-set background=dark
-colorscheme solarized
+if $TERM =~ 'rxvt'
+  set background=dark
+  colorscheme solarized
+endif
 
 set spellfile=~/.vim/spell/en.utf-8.add
 
@@ -153,7 +155,9 @@ else
     " Insert mode
     let &t_SI = "\<Esc>[5 q"
     " Replace mode
-    let &t_SR = "\<Esc>[3 q"
+    if has("patch-7.4-687")
+      let &t_SR = "\<Esc>[3 q"
+    endif
     " Normal mode
     let &t_EI = "\<Esc>[2 q"
 
