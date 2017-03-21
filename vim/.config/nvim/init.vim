@@ -132,13 +132,15 @@ let g:airline_powerline_fonts = 1
 let g:NERDAltDelims_c = 1
 
 let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
 if has('nvim')
   let g:vimtex_latexmk_progname='nvr'
+  let g:vimtex_view_method='zathura'
 endif
 let g:vimtex_quickfix_open_on_warning=0
 
 set printoptions+=paper:letter
+
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 let hostfile= $HOME . '/vimrc-' . hostname()
 if filereadable(hostfile)
