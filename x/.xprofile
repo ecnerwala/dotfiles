@@ -7,7 +7,8 @@ unset SSH_ASKPASS
 
 xset mouse 2/1 0 &
 
-syndaemon -K -i 1 -d &
+#obselete from libinput
+#syndaemon -K -i 1 -d &
 
 #[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap &
 

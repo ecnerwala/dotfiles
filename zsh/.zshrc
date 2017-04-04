@@ -97,6 +97,8 @@ alias vim="/usr/bin/nvim"
 
 alias mosh-athena='mosh --server="athrun mosh_project mosh-server"'
 
+alias dbx='dropbox-cli'
+
 function mosh-athena {
     md $1 && cd $1
 }
