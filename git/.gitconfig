@@ -14,6 +14,10 @@
 	ca = commit -a
 	caa = commit -a --amend
 	rb = rebase
+	l = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d"
+	ls = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d" -s
+	lp = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d" -p
+	la = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d" --all
 	git = !git
 [core]
 	excludesfile = ~/.gitignore_global
