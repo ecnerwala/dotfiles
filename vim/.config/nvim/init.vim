@@ -20,7 +20,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-sleuth'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
