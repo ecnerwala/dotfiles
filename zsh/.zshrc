@@ -121,7 +121,18 @@ function mkcd {
 unset GREP_OPTIONS
 
 # NVM setup
-alias nvm-init='source /usr/share/nvm/init-nvm.sh'
+declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+
+NODE_GLOBALS+=("node")
+NODE_GLOBALS+=("nvm")
+
+load_nvm () {
+    [ -s "/usr/share/nvm/init-nvm.sh" ] && source /usr/share/nvm/init-nvm.sh
+}
+
+for cmd in "${NODE_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+done
 
 # virtualenv wrapper setup
 export WORKON_HOME=$HOME/.virtualenvs
