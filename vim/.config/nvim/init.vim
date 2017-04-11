@@ -133,7 +133,12 @@ let g:NERDAltDelims_c = 1
 
 let g:tex_flavor='latex'
 if has('nvim')
-  let g:vimtex_latexmk_progname='nvr'
+  let g:vimtex_compiler_progname='nvr'
+endif
+if has('nvim') && !has('nvim-0.2')
+  let g:vimtex_quickfix_latexlog = {'fix_paths':0}
+endif
+if executable('zathura')
   let g:vimtex_view_method='zathura'
 endif
 let g:vimtex_quickfix_open_on_warning=0
