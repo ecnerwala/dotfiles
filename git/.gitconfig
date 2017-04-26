@@ -8,6 +8,7 @@
 [alias]
 	st = status -sb
 	fe = fetch
+	fa = fetch --all
 	co = checkout
 	br = branch
 	cm = commit
