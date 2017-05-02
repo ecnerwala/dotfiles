@@ -5,7 +5,7 @@ call plug#begin()
 
 "Navigation Plugins
 Plug 'scrooloose/nerdtree'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 
 "UI Plugins
@@ -38,6 +38,8 @@ Plug 'vimwiki'
 Plug 'lukaszkorecki/workflowish'
 
 call plug#end()
+
+set rtp^=/usr/share/vim/vimfiles
 
 syntax on
 filetype plugin indent on
