@@ -1,6 +1,8 @@
 set nocompatible
 filetype off
 
+let g:mapleader="\<Space>"
+
 call plug#begin()
 
 "Navigation Plugins
@@ -181,9 +183,16 @@ else
 endif
 
 if has('nvim')
-  tnoremap <Leader><Esc> <Esc>
-  tnoremap <Esc> <C-\><C-n>
+  tnoremap <S-Esc> <Esc>
+  tnoremap <Esc> <Esc><C-\><C-n>
 endif
+
+" FZF configs
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_buffers_jump = 1
+nnoremap <silent> <Leader><Space> :FzfFiles<CR>
+nnoremap <silent> <Leader>a :FzfBuffers<CR>
+nnoremap <silent> <Leader>A :FzfWindows<CR>
 
 let g:easytags_suppress_ctags_warning = 1
 
