@@ -160,7 +160,10 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
 
 if has('nvim')
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+  " For neovim 0.1.7
+  "let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+  " For neovim 0.2
+  "set guicursor=blah
 else
   if $TERM =~ '^xterm\|rxvt'
     " Insert mode
