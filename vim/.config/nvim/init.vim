@@ -36,7 +36,7 @@ if isdirectory("~/dev/mitscript-syntax")
 endif
 
 "Note taking
-Plug 'vimwiki'
+Plug 'vimwiki/vimwiki'
 Plug 'lukaszkorecki/workflowish'
 
 call plug#end()
