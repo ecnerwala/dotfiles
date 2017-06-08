@@ -19,6 +19,7 @@
 	ls = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d" --stat
 	lp = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d" -p
 	la = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d" --all
+	ff = merge --ff-only
 	git = !git
 [core]
 	excludesfile = ~/.gitignore_global
