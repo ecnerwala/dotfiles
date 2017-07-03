@@ -53,7 +53,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/home/andrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:$PATH"
+export PATH="/home/andrew/bin:/home/andrew/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -174,3 +174,7 @@ if [ -n "$VIRTUAL_ENV" ]; then
 else
   #workon default
 fi
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
