@@ -21,10 +21,11 @@
 	la = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d" --all
 	ff = merge --ff-only
 	git = !git
+	g = !git
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesFile = ~/.gitignore_global
 [merge]
-	conflictstyle = diff3
+	conflictStyle = diff3
 [pull]
 	rebase = true
 [rebase]
