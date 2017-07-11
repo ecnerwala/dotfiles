@@ -26,6 +26,7 @@ Plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'editorconfig/editorconfig-vim'
 
 "Language specific
 Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
