@@ -199,6 +199,8 @@ nnoremap <silent> <Leader>a :FzfBuffers<CR>
 nnoremap <silent> <Leader>A :FzfWindows<CR>
 
 let g:easytags_suppress_ctags_warning = 1
+let g:easytags_dynamic_files = 2
+set tags=./.vimtags;,.vimtags,./tags;,tags
 
 let g:ycm_enable_diagnostic_signs=0
 " Thanks to http://superuser.com/questions/558876/how-can-i-make-the-sign-column-show-up-all-the-time-even-if-no-signs-have-been-a

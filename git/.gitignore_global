@@ -5,6 +5,7 @@
 # Vim #
 #######
 .*.swp
+.vimtags
 
 # Compiled source #
 ###################
