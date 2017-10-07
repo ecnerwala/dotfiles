@@ -130,6 +130,8 @@ alias mosh-athena='mosh --server="athrun mosh_project mosh-server"'
 
 alias dbx='dropbox-cli'
 
+alias term='i3-sensible-terminal &>/dev/null &!'
+
 function mosh-athena {
     md $1 && cd $1
 }
@@ -178,3 +180,5 @@ fi
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export PATH=$HOME/.local/6828-qemu/bin:$PATH
