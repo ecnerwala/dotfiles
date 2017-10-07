@@ -1,5 +1,5 @@
 [core]
-	editor = vim
+	editor = nvim
 [user]
 	email = he.andrew.mail@gmail.com
 	name = Andrew He
@@ -9,10 +9,11 @@
 	st = status -sb
 	fe = fetch
 	fa = fetch --all
-	co = checkout
+	co = checkout --recurse-submodules
 	br = branch
 	cm = commit
 	ca = commit -a
+	cam = commit --amend
 	caa = commit -a --amend
 	rb = rebase
 	l = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d"
