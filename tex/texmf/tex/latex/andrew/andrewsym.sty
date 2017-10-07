@@ -1,0 +1,331 @@
+\ProvidesPackage{andrewsym}
+\usepackage{amsmath,amssymb,amsthm,amsfonts,bm,bbm}
+\usepackage{complexity}
+\usepackage{etoolbox}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{nicefrac,units,siunitx}
+\usepackage[version=3]{mhchem}
+\usepackage{mathrsfs,mathtools,xparse}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{todonotes}
+
+\usetikzlibrary{arrows,arrows.meta}
+\usetikzlibrary{calc}
+\usetikzlibrary{automata,positioning}
+
+\tikzset{
+    vertex/.style={circle,draw,minimum size=0.75cm,node distance=1.5cm},
+    edge/.style={->,>=latex},
+}
+
+\mathchardef\mhyphen="2D
+
+% Noun case
+\newcommand{\noun}[1]{\textsf{#1}}
+
+%
+% Various Helper Commands
+%
+
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\eps}{\varepsilon}
+
+\def\ZZ{\mathbb{Z}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\QQ{\mathbb{Q}}
+\def\FF{\mathbb{F}}
+\def\NN{\mathbb{N}}
+
+% Calligraphic and blackboard type letters.
+
+\def\vA{{\vec A}}
+\def\vB{{\vec B}}
+\def\vC{{\vec C}}
+\def\vD{{\vec D}}
+\def\vE{{\vec E}}
+\def\vF{{\vec F}}
+\def\vG{{\vec G}}
+\def\vH{{\vec H}}
+\def\vI{{\vec I}}
+\def\vJ{{\vec J}}
+\def\vK{{\vec K}}
+\def\vL{{\vec L}}
+\def\vM{{\vec M}}
+\def\vN{{\vec N}}
+\def\vO{{\vec O}}
+\def\vP{{\vec P}}
+\def\vQ{{\vec Q}}
+\def\vR{{\vec R}}
+\def\vS{{\vec S}}
+\def\vT{{\vec T}}
+\def\vU{{\vec U}}
+\def\vV{{\vec V}}
+\def\vW{{\vec W}}
+\def\vX{{\vec X}}
+\def\vY{{\vec Y}}
+\def\vZ{{\vec Z}}
+%%%%%%%%%%%
+\def\bA{{\mathbf A}}
+\def\bB{{\mathbf B}}
+\def\bC{{\mathbf C}}
+\def\bD{{\mathbf D}}
+\def\bE{{\mathbf E}}
+\def\bF{{\mathbf F}}
+\def\bG{{\mathbf G}}
+\def\bH{{\mathbf H}}
+\def\bI{{\mathbf I}}
+\def\bJ{{\mathbf J}}
+\def\bK{{\mathbf K}}
+\def\bL{{\mathbf L}}
+\def\bM{{\mathbf M}}
+\def\bN{{\mathbf N}}
+\def\bO{{\mathbf O}}
+\def\bP{{\mathbf P}}
+\def\bQ{{\mathbf Q}}
+\def\bR{{\mathbf R}}
+\def\bS{{\mathbf S}}
+\def\bT{{\mathbf T}}
+\def\bU{{\mathbf U}}
+\def\bV{{\mathbf V}}
+\def\bW{{\mathbf W}}
+\def\bX{{\mathbf X}}
+\def\bY{{\mathbf Y}}
+\def\bZ{{\mathbf Z}}
+%%%%%%%%%%%%%%
+\def\cA{{\mathcal A}}
+\def\cB{{\mathcal B}}
+\def\cC{{\mathcal C}}
+\def\cD{{\mathcal D}}
+\def\cE{{\mathcal E}}
+\def\cF{{\mathcal F}}
+\def\cG{{\mathcal G}}
+\def\cH{{\mathcal H}}
+\def\cI{{\mathcal I}}
+\def\cJ{{\mathcal J}}
+\def\cK{{\mathcal K}}
+\def\cL{{\mathcal L}}
+\def\cM{{\mathcal M}}
+\def\cN{{\mathcal N}}
+\def\cO{{\mathcal O}}
+\def\cP{{\mathcal P}}
+\def\cQ{{\mathcal Q}}
+\def\cR{{\mathcal R}}
+\def\cS{{\mathcal S}}
+\def\cT{{\mathcal T}}
+\def\cU{{\mathcal U}}
+\def\cV{{\mathcal V}}
+\def\cW{{\mathcal W}}
+\def\cX{{\mathcal X}}
+\def\cY{{\mathcal Y}}
+\def\cZ{{\mathcal Z}}
+%%%%%%%%%%%%%%%%%
+\def\bbA{{\mathbb A}}
+\def\bbB{{\mathbb B}}
+\def\bbC{{\mathbb C}}
+\def\bbD{{\mathbb D}}
+\def\bbE{{\mathbb E}}
+\def\bbF{{\mathbb F}}
+\def\bbG{{\mathbb G}}
+\def\bbH{{\mathbb H}}
+\def\bbI{{\mathbb I}}
+\def\bbJ{{\mathbb J}}
+\def\bbK{{\mathbb K}}
+\def\bbL{{\mathbb L}}
+\def\bbM{{\mathbb M}}
+\def\bbN{{\mathbb N}}
+\def\bbO{{\mathbb O}}
+\def\bbP{{\mathbb P}}
+\def\bbQ{{\mathbb Q}}
+\def\bbR{{\mathbb R}}
+\def\bbS{{\mathbb S}}
+\def\bbT{{\mathbb T}}
+\def\bbU{{\mathbb U}}
+\def\bbV{{\mathbb V}}
+\def\bbW{{\mathbb W}}
+\def\bbX{{\mathbb X}}
+\def\bbY{{\mathbb Y}}
+\def\bbZ{{\mathbb Z}}
+%%%%%%%%%%%
+\def\fA{{\mathfrak A}}
+\def\fB{{\mathfrak B}}
+\def\fC{{\mathfrak C}}
+\def\fD{{\mathfrak D}}
+\def\fE{{\mathfrak E}}
+\def\fF{{\mathfrak F}}
+\def\fG{{\mathfrak G}}
+\def\fH{{\mathfrak H}}
+\def\fI{{\mathfrak I}}
+\def\fJ{{\mathfrak J}}
+\def\fK{{\mathfrak K}}
+\def\fL{{\mathfrak L}}
+\def\fM{{\mathfrak M}}
+\def\fN{{\mathfrak N}}
+\def\fO{{\mathfrak O}}
+\def\fP{{\mathfrak P}}
+\def\fQ{{\mathfrak Q}}
+\def\fR{{\mathfrak R}}
+\def\fS{{\mathfrak S}}
+\def\fT{{\mathfrak T}}
+\def\fU{{\mathfrak U}}
+\def\fV{{\mathfrak V}}
+\def\fW{{\mathfrak W}}
+\def\fX{{\mathfrak X}}
+\def\fY{{\mathfrak Y}}
+\def\fZ{{\mathfrak Z}}
+%%%%%%%%%%%%%%
+\def\sA{{\mathscr A}}
+\def\sB{{\mathscr B}}
+\def\sC{{\mathscr C}}
+\def\sD{{\mathscr D}}
+\def\sE{{\mathscr E}}
+\def\sF{{\mathscr F}}
+\def\sG{{\mathscr G}}
+\def\sH{{\mathscr H}}
+\def\sI{{\mathscr I}}
+\def\sJ{{\mathscr J}}
+\def\sK{{\mathscr K}}
+\def\sL{{\mathscr L}}
+\def\sM{{\mathscr M}}
+\def\sN{{\mathscr N}}
+\def\sO{{\mathscr O}}
+\def\sP{{\mathscr P}}
+\def\sQ{{\mathscr Q}}
+\def\sR{{\mathscr R}}
+\def\sS{{\mathscr S}}
+\def\sT{{\mathscr T}}
+\def\sU{{\mathscr U}}
+\def\sV{{\mathscr V}}
+\def\sW{{\mathscr W}}
+\def\sX{{\mathscr X}}
+\def\sY{{\mathscr Y}}
+\def\sZ{{\mathscr Z}}
+
+% bold vectors
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+% Absolute value
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+% Rounding
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\round{\lfloor}{\rceil}
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+
+\let\oldfloor\floor
+\def\floor{\@ifstar{\oldfloor}{\oldfloor*}}
+
+\let\oldceil\ceil
+\def\ceil{\@ifstar{\oldceil}{\oldceil*}}
+
+\let\oldround\round
+\def\round{\@ifstar{\oldround}{\oldround*}}
+\makeatother
+
+\def\multiset#1#2{\ensuremath{\left(\kern-.3em\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)\kern-.3em\right)}}
+
+% Probability
+\DeclareMathOperator*{\EV}{\mathbb{E}}
+\let\Pr\relax
+\DeclareMathOperator*{\Pr}{\mathbb{P}}
+\DeclareMathOperator*{\Var}{Var}
+\DeclareMathOperator*{\Cov}{Cov}
+\DeclareMathOperator*{\Bias}{Bias}
+
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+
+\DeclareMathOperator{\Det}{Det}
+%\DeclareMathOperator{\det}{det}
+
+\DeclareMathOperator{\Rank}{Rank}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\rnk}{rnk}
+
+% Theorems
+%%%%%%%%%%
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+
+\newtheorem{algothm}[theorem]{Algorithm}
+\newtheorem*{algothm*}{Algorithm}
+
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem*{observation*}{Observation}
+
+\theoremstyle{definition}
+
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem*{claim*}{Claim}
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem*{conjecture*}{Conjecture}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem*{fact*}{Fact}
+
+\newtheorem{case}[theorem]{Case}
+\newtheorem*{case*}{Case}
+
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem*{assumption*}{Assumption}
+
+% Remark-style theorems
+
+\theoremstyle{remark}
+
+\newtheorem{note}[theorem]{Note}
+\newtheorem*{note*}{Note}
+
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+
+
+% Subproof with shaded square, subsubproof with //
+\newenvironment{subproof}[1][\proofname]{%
+  \renewcommand{\qedsymbol}{$\blacksquare$}%
+  \begin{proof}[#1]%
+}{%
+  \end{proof}%
+}
+\newenvironment{subsubproof}[1][\proofname]{%
+  \renewcommand{\qedsymbol}{//}%
+  \begin{proof}[#1]%
+}{%
+  \end{proof}%
+}
