@@ -1,1 +1,1 @@
-setlocal spell textwidth=80
+setlocal spell textwidth=80 shiftwidth=4

@@ -31,6 +31,8 @@ Plug 'editorconfig/editorconfig-vim'
 "Language specific
 Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 if isdirectory("~/dev/mitscript-syntax")
   Plug '~/dev/mitscript-syntax'
@@ -151,6 +153,9 @@ let g:vimtex_quickfix_open_on_warning=0
 set printoptions+=paper:letter
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+let g:airline#extensions#wordcount#filetypes .= '|pandoc'
+let g:pandoc#formatting#mode = 'hA'
+let g:pandoc#formatting#textwidth = 80
 
 let hostfile= $HOME . '/vimrc-' . hostname()
 if filereadable(hostfile)
@@ -199,7 +204,7 @@ nnoremap <silent> <Leader>a :FzfBuffers<CR>
 nnoremap <silent> <Leader>A :FzfWindows<CR>
 
 let g:easytags_suppress_ctags_warning = 1
-let g:easytags_dynamic_files = 2
+let g:easytags_dynamic_files = 1
 set tags=./.vimtags;,.vimtags,./tags;,tags
 
 let g:ycm_enable_diagnostic_signs=0
