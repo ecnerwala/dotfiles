@@ -154,7 +154,7 @@ set printoptions+=paper:letter
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 let g:airline#extensions#wordcount#filetypes .= '|pandoc'
-let g:pandoc#formatting#mode = 'hA'
+let g:pandoc#formatting#mode = 'h'
 let g:pandoc#formatting#textwidth = 80
 
 let hostfile= $HOME . '/vimrc-' . hostname()
