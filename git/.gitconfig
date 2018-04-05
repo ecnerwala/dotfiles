@@ -25,6 +25,7 @@
 	g = !git
 [core]
 	excludesFile = ~/.gitignore_global
+	autocrlf = input
 [merge]
 	conflictStyle = diff3
 [pull]
