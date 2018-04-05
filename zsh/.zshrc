@@ -53,6 +53,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+setopt NO_BG_NICE
+
 export PATH="/home/andrew/bin:/home/andrew/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -112,7 +114,7 @@ fi
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 alias e='vim'
-alias cls='clear'
+alias cls='clear -x'
 
 alias open='xdg-open'
 alias ko='konsole -e'
