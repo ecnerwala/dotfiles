@@ -58,7 +58,7 @@
 "arandr"
   XF86Display
 
-"scrot -s -z -e 'mv $f ~/Dropbox/Screenshots/'"
+"maim -s ~/Dropbox/Screenshots/$(date +%Y-%m-%d-%H%M%S)_maim.png"
   Print + Release
 
 # Examples of commands:
