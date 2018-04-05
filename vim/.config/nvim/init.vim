@@ -77,6 +77,9 @@ set mouse=a
 set autoread
 autocmd BufEnter,FocusGained * checktime
 
+" Update gutters 200 ms
+set updatetime=200
+
 cmap w!! w !sudo tee > /dev/null %
 
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
