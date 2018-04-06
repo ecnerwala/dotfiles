@@ -6,6 +6,7 @@ let g:mapleader="\<Space>"
 call plug#begin()
 
 "Navigation Plugins
+Plug 'dbakker/vim-projectroot'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
@@ -23,7 +24,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
 "Plug 'SirVer/ultisnips'
-Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
@@ -199,15 +200,19 @@ if has('nvim')
   tnoremap <Esc> <Esc><C-\><C-n>
 endif
 
+" Project root
+let g:rootmarkers = ['.projectroot','Makefile','.git','.hg','.svn','.bzr','_darcs','build.xml']
+
 " FZF configs
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_buffers_jump = 1
-nnoremap <silent> <Leader><Space> :FzfFiles<CR>
+command! FzfProjectFiles execute 'FzfFiles' projectroot#guess()
+nnoremap <silent> <Leader><Space> :FzfProjectFiles<CR>
 nnoremap <silent> <Leader>a :FzfBuffers<CR>
 nnoremap <silent> <Leader>A :FzfWindows<CR>
 
-let g:easytags_suppress_ctags_warning = 1
-let g:easytags_dynamic_files = 1
+let g:gutentags_project_root_finder = 'projectroot#guess'
+let g:gutentags_ctags_tagfile = '.vimtags'
 set tags=./.vimtags;,.vimtags,./tags;,tags
 
 let g:ycm_enable_diagnostic_signs=0
