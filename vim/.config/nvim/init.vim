@@ -21,10 +21,10 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-sleuth'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer' }
 Plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
 "Plug 'SirVer/ultisnips'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
@@ -67,7 +67,8 @@ set cindent cinoptions=N-s,g0
 set splitright splitbelow
 
 " Necessary for terminal buffers not to die
-set hidden
+"set hidden
+autocmd TermOpen * set bufhidden=hide
 
 set title
 
@@ -83,7 +84,7 @@ set updatetime=200
 
 cmap w!! w !sudo tee > /dev/null %
 
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_global_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let delimitMate_expand_cr = 1
@@ -91,6 +92,7 @@ autocmd FileType tex let b:delimitMate_autoclose = 0
 
 command Bc bp|bd #
 let g:bufferline_rotate=1
+let g:bufferline_echo = 0
 
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
 function WrapOn()
@@ -129,7 +131,7 @@ function ToggleWrap()
 endfunction
 call WrapOn()
 
-if $TERM =~ 'rxvt'
+if $TERM =~ 'rxvt' || $TERM =~'termite'
   set background=dark
   colorscheme solarized
 endif
@@ -212,8 +214,14 @@ nnoremap <silent> <Leader>a :FzfBuffers<CR>
 nnoremap <silent> <Leader>A :FzfWindows<CR>
 
 let g:gutentags_project_root_finder = 'projectroot#guess'
+let g:gutentags_generate_on_missing = 0
+let g:gutentags_generate_on_new = 0
+let g:gutentags_modules = ['ctags', 'cscope']
+let g:gutentags_cache_dir = $HOME . '/.cache/gutentags'
 let g:gutentags_ctags_tagfile = '.vimtags'
 set tags=./.vimtags;,.vimtags,./tags;,tags
+
+set cscopetag
 
 let g:ycm_enable_diagnostic_signs=0
 " Thanks to http://superuser.com/questions/558876/how-can-i-make-the-sign-column-show-up-all-the-time-even-if-no-signs-have-been-a
