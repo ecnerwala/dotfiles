@@ -6,6 +6,7 @@
 #######
 .*.swp
 .vimtags
+.notags
 
 # Compiled source #
 ###################
@@ -46,6 +47,9 @@ ehthumbs.db
 Thumbs.db
 
 __pycache__/
+
+# VSCode directory
+.vscode/
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
 
