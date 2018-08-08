@@ -147,7 +147,7 @@ alias mosh-athena='mosh --server="athrun mosh_project mosh-server"'
 
 alias dbx='dropbox-cli'
 
-alias term='i3-sensible-terminal &>/dev/null &!'
+alias term='(setsid i3-sensible-terminal &>/dev/null &)'
 
 function mosh-athena {
     md $1 && cd $1
