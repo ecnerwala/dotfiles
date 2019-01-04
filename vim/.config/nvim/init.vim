@@ -2,6 +2,7 @@ set nocompatible
 filetype off
 
 let g:mapleader="\<Space>"
+let g:maplocalleader="\<Space>"
 
 call plug#begin()
 
@@ -34,6 +35,9 @@ Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'mxw/vim-jsx'
+Plug 'tikhomirov/vim-glsl'
+Plug 'vhdirk/vim-cmake'
 
 if isdirectory("~/dev/mitscript-syntax")
   Plug '~/dev/mitscript-syntax'
@@ -65,6 +69,13 @@ set conceallevel=2
 set cindent cinoptions=N-s,g0
 
 set splitright splitbelow
+
+set ignorecase smartcase
+nnoremap * /\<<C-R>=expand('<cword>')<CR>\><CR>
+nnoremap # ?\<<C-R>=expand('<cword>')<CR>\><CR>
+
+" Map <CR> to :nohl, except in quickfix windows
+nnoremap <silent> <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : ":nohl\<CR>"
 
 " Necessary for terminal buffers not to die
 "set hidden
@@ -159,7 +170,9 @@ let g:vimtex_quickfix_open_on_warning=0
 set printoptions+=paper:letter
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-let g:airline#extensions#wordcount#filetypes .= '|pandoc'
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#wordcount#filetypes = ['help', 'markdown', 'rst', 'org', 'text', 'asciidoc', 'tex', 'mail']
+let g:airline#extensions#wordcount#filetypes += ['pandoc']
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#formatting#textwidth = 80
 
@@ -199,7 +212,8 @@ endif
 
 if has('nvim')
   tnoremap <S-Esc> <Esc>
-  tnoremap <Esc> <Esc><C-\><C-n>
+  tnoremap <Esc> <C-\><C-n>
+  autocmd TermOpen * startinsert
 endif
 
 " Project root
@@ -213,6 +227,9 @@ nnoremap <silent> <Leader><Space> :FzfProjectFiles<CR>
 nnoremap <silent> <Leader>a :FzfBuffers<CR>
 nnoremap <silent> <Leader>A :FzfWindows<CR>
 
+nnoremap <silent> <Leader>yy :YcmCompleter GoTo<CR>
+nnoremap <Leader>y<Space> :YcmCompleter<Space>
+
 let g:gutentags_project_root_finder = 'projectroot#guess'
 let g:gutentags_generate_on_missing = 0
 let g:gutentags_generate_on_new = 0
@@ -220,6 +237,8 @@ let g:gutentags_modules = ['ctags', 'cscope']
 let g:gutentags_cache_dir = $HOME . '/.cache/gutentags'
 let g:gutentags_ctags_tagfile = '.vimtags'
 set tags=./.vimtags;,.vimtags,./tags;,tags
+
+let g:cmake_export_compile_commands = 1
 
 set cscopetag
 
