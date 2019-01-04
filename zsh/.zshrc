@@ -47,7 +47,7 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history)
+plugins=(git history bgnotify)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -194,8 +194,15 @@ else
   #workon default
 fi
 
+export PATH=$PATH:~/.yarn/bin
+
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH=$HOME/.local/6828-qemu/bin:$PATH
+
+if [[ $TERM == xterm-termite ]]; then
+  . /etc/profile.d/vte.sh
+  __vte_osc7
+fi
