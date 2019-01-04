@@ -49,6 +49,11 @@ HEADER_DIRECTORIES = [
 
 BUILD_DIRECTORY = 'build';
 
+FLAG_FILES = [
+    'compile_flags.txt',
+    '.clang_complete',
+]
+
 def IsHeaderFile(filename):
     extension = os.path.splitext(filename)[1]
     return extension in HEADER_EXTENSIONS
@@ -76,7 +81,7 @@ def CompilationDatabaseToFlags(database, filename):
     if compilation_info.compiler_flags_:
         return {
             'flags': compilation_info.compiler_flags_,
-            'include_paths_relative_to': compilation_info.compiler_working_dir_,
+            'include_paths_relative_to_dir': compilation_info.compiler_working_dir_,
             'override_filename': filename,
         }
     return None
@@ -107,26 +112,16 @@ def GetCompilationInfoForFile(database, filename):
     return None
 
 def FlagsFromClangComplete(root):
-    try:
-        clang_complete_path = FindNearest(root, 'compile_flags.txt')
-        clang_complete_flags = open(clang_complete_path, 'r').read().splitlines()
-        return {
-            'flags': clang_complete_flags,
-            'include_paths_relative_to': os.path.dirname(clang_complete_path),
-        }
-    except Exception:
-        pass
-
-    try:
-        clang_complete_path = FindNearest(root, '.clang_complete')
-        clang_complete_flags = open(clang_complete_path, 'r').read().splitlines()
-        return {
-            'flags': clang_complete_flags,
-            'include_paths_relative_to': os.path.dirname(clang_complete_path),
-        }
-    except Exception:
-        pass
-
+    for filename in FLAG_FILES:
+        try:
+            clang_complete_path = FindNearest(root, filename)
+            clang_complete_flags = open(clang_complete_path, 'r').read().splitlines()
+            return {
+                'flags': clang_complete_flags,
+                'include_paths_relative_to_dir': os.path.dirname(clang_complete_path),
+            }
+        except Exception:
+            pass
     return None
 
 def FlagsFromInclude(root):
@@ -158,9 +153,7 @@ def FlagsFromCompilationDatabase(root, filename):
         if not compilation_info:
             logging.info("No compilation info for " + filename + " in compilation database")
             return None
-        return MakeRelativePathsInFlagsAbsolute(
-                compilation_info.compiler_flags_,
-                compilation_info.compiler_working_dir_)
+        return compilation_info
     except Exception:
         return None
 
