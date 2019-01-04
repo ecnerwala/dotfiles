@@ -140,6 +140,19 @@ bindsym $mod+Shift+asterisk move container to workspace number 8
 bindsym $mod+Shift+parenleft move container to workspace number 9
 bindsym $mod+Shift+parenright move container to workspace number 10
 
+#set $primary_monitor "eDP1"
+#set $secondary_monitor "DP1"
+#workspace 1 output $primary_monitor
+#workspace 2 output $primary_monitor
+#workspace 3 output $primary_monitor
+#workspace 4 output $primary_monitor
+#workspace 5 output $primary_monitor
+#workspace 6 output $secondary_monitor
+#workspace 7 output $secondary_monitor
+#workspace 8 output $secondary_monitor
+#workspace 9 output $secondary_monitor
+#workspace 10 output $secondary_monitor
+
 bindsym $mod+slash exec --no-startup-id ~/.i3/workspace.rb
 
 # reload the configuration file
