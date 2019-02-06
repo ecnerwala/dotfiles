@@ -66,6 +66,8 @@ set errorformat^=%-GIn\ file\ included\ %.%#
 set foldmethod=syntax
 set conceallevel=2
 
+set undofile
+
 set cindent cinoptions=N-s,g0
 
 set splitright splitbelow
