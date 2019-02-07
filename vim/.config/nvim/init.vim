@@ -216,8 +216,8 @@ if has('nvim')
   tnoremap <S-Esc> <Esc>
   tnoremap <Esc> <C-\><C-n>
   autocmd TermOpen * startinsert
+  au FileType fzf tnoremap <buffer> <Esc> <Esc>
 endif
-
 " Project root
 let g:rootmarkers = ['.projectroot','Makefile','.git','.hg','.svn','.bzr','_darcs','build.xml']
 
