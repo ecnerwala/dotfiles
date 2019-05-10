@@ -2,8 +2,7 @@
 # It will not be overwritten, so edit it as you like.
 #
 # Should you change your keyboard layout somewhen, delete
-# this file and re-run i3-config-wizard(1).
-#
+# this file and re-run i3-config-wizard(1). 
 
 # i3 config file (v4)
 #
@@ -153,7 +152,7 @@ bindsym $mod+Shift+parenright move container to workspace number 10
 #workspace 9 output $secondary_monitor
 #workspace 10 output $secondary_monitor
 
-bindsym $mod+slash exec --no-startup-id ~/.i3/workspace.rb
+bindsym $mod+slash exec --no-startup-id ~/.config/i3/workspace.rb
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
@@ -230,10 +229,10 @@ set $baseB3 #fdf6e3
 set $custom #1c5766
 
 # clientclass border backgr. text indicator
-client.focused $custom $custom $baseB3 $green
-client.focused_inactive $baseA2 $baseA2 $baseB2 $green
-client.unfocused $baseA3 $baseA3 $baseB1 $green
-client.urgent $red $red $baseB3 $green
+client.focused $custom $custom $baseB3 $green $custom
+client.focused_inactive $baseA2 $baseA2 $baseB2 $green $baseA2
+client.unfocused $baseA3 $baseA3 $baseB1 $green $baseA3
+client.urgent $red $red $baseB3 $green $red
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
