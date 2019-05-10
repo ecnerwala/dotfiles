@@ -119,7 +119,7 @@ _gen_fzf_default_opts_solarized() {
     --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
   "
 }
-if [[ "$TERM" == "rxvt-unicode-256color" ]]; then
+if [[ "$TERM" == "rxvt-unicode-256color" || "$TERM" == "xterm-termite" ]]; then
   _gen_fzf_default_opts_solarized
 fi
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
@@ -201,8 +201,11 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH=$HOME/.local/6828-qemu/bin:$PATH
+export PATH="$HOME/.cargo/bin:$PATH"
 
 if [[ $TERM == xterm-termite ]]; then
   . /etc/profile.d/vte.sh
   __vte_osc7
 fi
+
+ulimit -s unlimited
