@@ -29,3 +29,5 @@ lxpolkit &
 eval `ssh-agent`
 
 ~/.starttray.sh &
+
+export TERMINAL=termite
