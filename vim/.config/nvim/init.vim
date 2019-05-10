@@ -22,7 +22,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-sleuth'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer --rust-completer' }
 Plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
 "Plug 'SirVer/ultisnips'
 "Plug 'ludovicchabant/vim-gutentags'
@@ -38,6 +38,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'mxw/vim-jsx'
 Plug 'tikhomirov/vim-glsl'
 Plug 'vhdirk/vim-cmake'
+Plug 'ds26gte/scmindent'
 
 if isdirectory("~/dev/mitscript-syntax")
   Plug '~/dev/mitscript-syntax'
@@ -65,6 +66,7 @@ set showcmd
 set errorformat^=%-GIn\ file\ included\ %.%#
 set foldmethod=syntax
 set conceallevel=2
+set list lcs=tab:»\ ,trail:␣,extends:▶,precedes:◀
 
 set undofile
 
@@ -97,6 +99,9 @@ set updatetime=200
 
 cmap w!! w !sudo tee > /dev/null %
 
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
+
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_global_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
@@ -109,7 +114,7 @@ let g:bufferline_echo = 0
 
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
 function WrapOn()
-  setlocal wrap linebreak nolist
+  setlocal wrap linebreak
   set virtualedit=
   setlocal display+=lastline
   noremap  <buffer> <silent> <Up>   g<Up>
@@ -145,6 +150,7 @@ endfunction
 call WrapOn()
 
 if $TERM =~ 'rxvt' || $TERM =~'termite'
+  let g:solarized_visibility='low'
   set background=dark
   colorscheme solarized
 endif
@@ -169,6 +175,9 @@ if executable('zathura')
 endif
 let g:vimtex_quickfix_open_on_warning=0
 
+" lisp/scheme
+autocmd filetype lisp,scheme setlocal equalprg=$HOME/.config/nvim/plugged/scmindent/scmindent.rkt
+
 set printoptions+=paper:letter
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -188,7 +197,7 @@ autocmd StdinReadPre * let s:std_in=1
 
 if has('nvim')
   " For neovim 0.1.7
-  "let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
   " For neovim 0.2
   "set guicursor=blah
 else
@@ -248,3 +257,6 @@ let g:ycm_enable_diagnostic_signs=0
 " Thanks to http://superuser.com/questions/558876/how-can-i-make-the-sign-column-show-up-all-the-time-even-if-no-signs-have-been-a
 "autocmd BufEnter * sign define dummy
 "autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+
+com -range=% -nargs=1 P exe "<line1>,<line2>!".<q-args> | y | sil u | echom @"
+com -range=% Hash <line1>,<line2>P cpp -P -fpreprocessed | tr -d '[:space:]' | md5sum
