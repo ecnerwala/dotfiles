@@ -10,19 +10,26 @@
 	fe = fetch
 	fa = fetch --all
 	co = checkout --recurse-submodules
+	cob = co --no-track -b
 	br = branch
 	cm = commit
 	ca = commit -a
 	cam = commit --amend
 	caa = commit -a --amend
 	rb = rebase
-	l = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d"
-	ls = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d" --stat
-	lp = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d" -p
-	la = log --oneline --graph --decorate --pretty="%C(auto)%h\\ %s\\ %C(green)(%ar)%C(auto)\\ %C(blue)<%an>%C(auto)%d" --all
+	l = log --oneline --graph --decorate --pretty=myline
+	la = l --all
+	ls = l --pretty=myfull --stat
+	lp = l --pretty=myfull --patch
 	ff = merge --ff-only
+	d = diff HEAD
+	dw = d --color-words
+	dc = d --color-words=.
+	track = add -N
+
 	git = !git
 	g = !git
+	arc = !arc
 [core]
 	excludesFile = ~/.gitignore_global
 	autocrlf = input
@@ -35,3 +42,6 @@
 	autoStash = true
 [gitsh]
 	defaultCommand = st
+[pretty]
+	myline = %C(auto)%h %s %C(green)(%cr)%C(auto) %C(blue)<%an>%C(auto)%d
+	myfull = format:%C(auto)%h %C(bold)%s%C(auto) %d%nAuthor: %C(blue)%an <%ae>%C(auto)%nAuthor Date: %C(green)%ad (%ar)%C(auto)%nCommitter: %C(blue)%cn <%ce>%C(auto)%nCommitter Date: %C(green)%cd (%cr)%C(auto)%n%w(76,4,4)%+b
