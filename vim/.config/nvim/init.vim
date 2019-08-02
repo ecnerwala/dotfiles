@@ -110,6 +110,7 @@ autocmd FileType tex let b:delimitMate_autoclose = 0
 
 command Bc bp|bd #
 let g:bufferline_rotate=1
+let g:bufferline_fixed_index=-1
 let g:bufferline_echo = 0
 
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
@@ -194,6 +195,7 @@ endif
 
 autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
+nnoremap <silent> <Leader>n :NERDTreeFind<CR>:NERDTreeFocus<CR>
 
 if has('nvim')
   " For neovim 0.1.7
@@ -231,10 +233,12 @@ endif
 let g:rootmarkers = ['.projectroot','Makefile','.git','.hg','.svn','.bzr','_darcs','build.xml']
 
 " FZF configs
+let $FZF_DEFAULT_COMMAND = 'rg --files'
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_buffers_jump = 1
 command! FzfProjectFiles execute 'FzfFiles' projectroot#guess()
 nnoremap <silent> <Leader><Space> :FzfProjectFiles<CR>
+nnoremap <silent> <Leader>f :FzfRg<CR>
 nnoremap <silent> <Leader>a :FzfBuffers<CR>
 nnoremap <silent> <Leader>A :FzfWindows<CR>
 
