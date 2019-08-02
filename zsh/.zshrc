@@ -55,7 +55,7 @@ source $ZSH/oh-my-zsh.sh
 
 setopt NO_BG_NICE
 
-export PATH="/home/andrew/bin:/home/andrew/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -79,21 +79,21 @@ export ARCHFLAGS="-arch x86_64"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-bindkey "<Up>" up-line-or-local-history
-bindkey "<Down>" down-line-or-local-history
+bindkey "${terminfo[kcuu1]}" up-line-or-local-search
+bindkey "${terminfo[kcud1]}" down-line-or-local-search
 
-up-line-or-local-history() {
+up-line-or-local-search() {
     zle set-local-history 1
-    zle up-line-or-history
+    zle up-line-or-search
     zle set-local-history 0
 }
-zle -N up-line-or-local-history
-down-line-or-local-history() {
+zle -N up-line-or-local-search
+down-line-or-local-search() {
     zle set-local-history 1
-    zle down-line-or-history
+    zle down-line-or-search
     zle set-local-history 0
 }
-zle -N down-line-or-local-history
+zle -N down-line-or-local-search
 
 _gen_fzf_default_opts_solarized() {
   local base03="8"
@@ -200,7 +200,7 @@ export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-export PATH=$HOME/.local/6828-qemu/bin:$PATH
+export PATH="$HOME/.local/6828-qemu/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 if [[ $TERM == xterm-termite ]]; then
