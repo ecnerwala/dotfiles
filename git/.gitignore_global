@@ -11,6 +11,7 @@
 # Compiled source #
 ###################
 *.com
+!*.com/  # /github.com/ shows up in go projects
 *.class
 *.dll
 *.exe
@@ -33,7 +34,7 @@
 # Logs and databases #
 ######################
 *.log
-*.sql
+#*.sql
 *.sqlite
 
 # OS generated files #
