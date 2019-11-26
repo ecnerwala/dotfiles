@@ -7,24 +7,25 @@
 	default = simple
 [alias]
 	st = status -sb
-	fe = fetch
-	fa = fetch --all
-	co = checkout --recurse-submodules
-	cob = co --no-track -b
+	fe = fetch --tags -f
+	fa = fe --all
+	cl = clone --recursive
+	#bs = switch --recurse-submodules
+	bs = switch
+	bsd = bs --detach
+	bnew = switch --no-track -c
 	br = branch
-	cm = commit
-	ca = commit -a
-	cam = commit --amend
-	caa = commit -a --amend
+	c = commit
+	ca = commit --amend --no-edit
 	rb = rebase
 	l = log --oneline --graph --decorate --pretty=myline
 	la = l --all
 	ls = l --pretty=myfull --stat
 	lp = l --pretty=myfull --patch
 	ff = merge --ff-only
-	d = diff HEAD
-	dw = d --color-words
-	dc = d --color-words=.
+	d = diff
+	dw = d --word-diff=plain
+	dc = dw --word-diff-regex=.
 	track = add -N
 
 	git = !git
