@@ -56,6 +56,8 @@ set rtp^=/usr/share/vim/vimfiles
 syntax on
 filetype plugin indent on
 
+autocmd BufRead,BufNewFile *.sage,*.pyx,*.spyx set filetype=python
+
 set backspace=indent,eol,start
 set softtabstop=4
 set shiftwidth=4
