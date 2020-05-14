@@ -39,6 +39,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tikhomirov/vim-glsl'
 Plug 'vhdirk/vim-cmake'
 Plug 'ds26gte/scmindent'
+Plug 'udalov/kotlin-vim'
 
 if isdirectory("~/dev/mitscript-syntax")
   Plug '~/dev/mitscript-syntax'
