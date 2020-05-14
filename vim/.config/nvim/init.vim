@@ -7,6 +7,7 @@ let g:maplocalleader="\<Space>"
 call plug#begin()
 
 "Navigation Plugins
+Plug 'rbgrouleff/bclose.vim'
 Plug 'dbakker/vim-projectroot'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf.vim'
@@ -111,7 +112,6 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let delimitMate_expand_cr = 1
 autocmd FileType tex let b:delimitMate_autoclose = 0
 
-command Bc bp|bd #
 let g:bufferline_rotate=1
 let g:bufferline_fixed_index=-1
 let g:bufferline_echo = 0
