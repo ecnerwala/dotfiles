@@ -22,7 +22,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-sleuth'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer --rust-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer --go-completer --rust-completer --ts-completer' }
 Plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
 "Plug 'SirVer/ultisnips'
 "Plug 'ludovicchabant/vim-gutentags'
@@ -35,7 +35,7 @@ Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tikhomirov/vim-glsl'
 Plug 'vhdirk/vim-cmake'
 Plug 'ds26gte/scmindent'
