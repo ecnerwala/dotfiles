@@ -73,7 +73,7 @@ set list lcs=tab:»\ ,trail:␣,extends:▶,precedes:◀
 
 set undofile
 
-set cindent cinoptions=N-s,g0
+set cindent cinoptions=N-s,g0,j1
 
 set splitright splitbelow
 
