@@ -200,7 +200,7 @@ endif
 
 autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
-nnoremap <silent> <Leader>n :NERDTreeFind<CR>:NERDTreeFocus<CR>
+nnoremap <silent> <Leader>n :silent! NERDTreeFind<CR>:NERDTreeFocus<CR>
 
 if has('nvim')
   " For neovim 0.1.7
