@@ -248,7 +248,10 @@ nnoremap <silent> <Leader>a :FzfBuffers<CR>
 nnoremap <silent> <Leader>A :FzfWindows<CR>
 
 nnoremap <silent> <Leader>yy :YcmCompleter GoTo<CR>
-nnoremap <Leader>y<Space> :YcmCompleter<Space>
+nnoremap <silent> <Leader>yr :YcmCompleter GoToReferences<CR>
+nnoremap <Leader>yd :YcmDiags<CR>
+nnoremap <Leader>yf :YcmCompleter FixIt<CR>
+nnoremap <Leader>y: :YcmCompleter<Space>
 
 let g:gutentags_project_root_finder = 'projectroot#guess'
 let g:gutentags_generate_on_missing = 0
