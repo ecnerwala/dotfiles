@@ -132,7 +132,7 @@ function WrapOn()
 endfunction
 function WrapOff()
   setlocal nowrap
-  set virtualedit=all
+  set virtualedit=
   silent! nunmap <buffer> <Up>
   silent! nunmap <buffer> <Down>
   silent! nunmap <buffer> <Home>
