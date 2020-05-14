@@ -149,10 +149,6 @@ alias dbx='dropbox-cli'
 
 alias term='(setsid i3-sensible-terminal &>/dev/null &)'
 
-function mosh-athena {
-    md $1 && cd $1
-}
-
 unalias gp
 
 unset SSH_ASKPASS
