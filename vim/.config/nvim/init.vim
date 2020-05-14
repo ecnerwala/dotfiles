@@ -159,6 +159,8 @@ if $TERM =~ 'rxvt' || $TERM =~'termite'
   colorscheme solarized
 endif
 
+highlight! link SignColumn LineNr
+
 set spellfile=~/.vim/spell/en.utf-8.add
 
 set laststatus=2
