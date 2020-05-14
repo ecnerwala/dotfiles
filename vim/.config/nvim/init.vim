@@ -269,3 +269,4 @@ let g:ycm_enable_diagnostic_signs=0
 
 com -range=% -nargs=1 P exe "<line1>,<line2>!".<q-args> | y | sil u | echom @"
 com -range=% Hash <line1>,<line2>P cpp -P -fpreprocessed | tr -d '[:space:]' | md5sum
+au FileType cpp com! -buffer -range=% Hash <line1>,<line2>P cpp -P -fpreprocessed | tr -d '[:space:]' | md5sum
