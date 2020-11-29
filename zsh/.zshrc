@@ -43,11 +43,13 @@ ZSH_THEME="bureau"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+NVM_LAZY=1
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history bgnotify)
+plugins=(git history bgnotify nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -128,6 +130,8 @@ fi
 [[ -e ~/.dircolors ]] && eval `dircolors ~/.dircolors`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
+alias mv='mv -i'
+
 alias e='vim'
 alias cls='clear -x'
 
@@ -166,20 +170,6 @@ function mkcd {
 
 unset GREP_OPTIONS
 
-# NVM setup
-declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
-
-NODE_GLOBALS+=("node")
-NODE_GLOBALS+=("nvm")
-
-load_nvm () {
-    [ -s "/usr/share/nvm/init-nvm.sh" ] && source /usr/share/nvm/init-nvm.sh
-}
-
-for cmd in "${NODE_GLOBALS[@]}"; do
-    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-done
-
 # virtualenv wrapper setup
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/projects
@@ -204,4 +194,4 @@ if [[ $TERM == xterm-termite ]]; then
   __vte_osc7
 fi
 
-ulimit -s unlimited
+#ulimit -s 131072
