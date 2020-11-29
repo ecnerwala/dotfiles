@@ -7,6 +7,8 @@
 .*.swp
 .vimtags
 .notags
+.clangd/
+.cache/
 
 # Compiled source #
 ###################
