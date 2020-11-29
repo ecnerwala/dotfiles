@@ -2,7 +2,7 @@
 # It will not be overwritten, so edit it as you like.
 #
 # Should you change your keyboard layout somewhen, delete
-# this file and re-run i3-config-wizard(1). 
+# this file and re-run i3-config-wizard(1).
 
 # i3 config file (v4)
 #
@@ -139,18 +139,18 @@ bindsym $mod+Shift+asterisk move container to workspace number 8
 bindsym $mod+Shift+parenleft move container to workspace number 9
 bindsym $mod+Shift+parenright move container to workspace number 10
 
-#set $primary_monitor "eDP1"
-#set $secondary_monitor "DP1"
-#workspace 1 output $primary_monitor
-#workspace 2 output $primary_monitor
-#workspace 3 output $primary_monitor
-#workspace 4 output $primary_monitor
-#workspace 5 output $primary_monitor
-#workspace 6 output $secondary_monitor
-#workspace 7 output $secondary_monitor
-#workspace 8 output $secondary_monitor
-#workspace 9 output $secondary_monitor
-#workspace 10 output $secondary_monitor
+set $primary_monitor "eDP1"
+set $secondary_monitor "HDMI1"
+workspace 1 output $primary_monitor
+workspace 2 output $primary_monitor
+workspace 3 output $primary_monitor
+workspace 4 output $primary_monitor
+workspace 5 output $primary_monitor
+workspace 6 output $secondary_monitor
+workspace 7 output $secondary_monitor
+workspace 8 output $secondary_monitor
+workspace 9 output $secondary_monitor
+workspace 10 output $secondary_monitor
 
 bindsym $mod+slash exec --no-startup-id ~/.config/i3/workspace.rb
 
@@ -237,18 +237,19 @@ client.urgent $red $red $baseB3 $green $red
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    colors {
-        background $baseA3
-        statusline $baseB3
-        separator $baseB1
+	colors {
+		background $baseA3
+		statusline $baseB3
+		separator $baseB1
 
-        focused_workspace  $custom $custom $baseB3
-        active_workspace   $baseA2 $custom $baseB1
-        inactive_workspace $baseA3 $baseA3 $baseB1
-        urgent_workspace   $red $red $baseB3
-    }
+		focused_workspace  $custom $custom $baseB3
+		active_workspace   $baseA2 $custom $baseB1
+		inactive_workspace $baseA3 $baseA3 $baseB1
+		urgent_workspace   $red $red $baseB3
+	}
 
 	status_command i3status
 	tray_output primary
+	#tray_output HDMI1
 	#status_command conky
 }
