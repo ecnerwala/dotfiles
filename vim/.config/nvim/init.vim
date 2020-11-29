@@ -10,6 +10,7 @@ call plug#begin()
 Plug 'rbgrouleff/bclose.vim'
 Plug 'dbakker/vim-projectroot'
 Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 
@@ -30,12 +31,16 @@ Plug 'rdnetto/ycm-generator', { 'branch': 'stable' }
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'Chiel92/vim-autoformat'
 
 "Language specific
 Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'yuezk/vim-js'
+Plug 'HerringtonDarkholme/yats.vim'
+"Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tikhomirov/vim-glsl'
 Plug 'vhdirk/vim-cmake'
@@ -74,7 +79,7 @@ set list lcs=tab:»\ ,trail:␣,extends:▶,precedes:◀
 
 set undofile
 
-set cindent cinoptions=N-s,g0,j1
+set cindent cinoptions=N-s,g0,j1,(s,m1
 
 set splitright splitbelow
 
@@ -84,6 +89,8 @@ nnoremap # ?\<<C-R>=expand('<cword>')<CR>\><CR>
 
 " Map <CR> to :nohl, except in quickfix windows
 nnoremap <silent> <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : ":nohl\<CR>"
+
+nnoremap gA :%y+<CR>
 
 " Necessary for terminal buffers not to die
 "set hidden
@@ -204,7 +211,7 @@ nnoremap <silent> <Leader>n :silent! NERDTreeFind<CR>:NERDTreeFocus<CR>
 
 if has('nvim')
   " For neovim 0.1.7
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+  "let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
   " For neovim 0.2
   "set guicursor=blah
 else
@@ -241,8 +248,8 @@ let g:rootmarkers = ['.projectroot','Makefile','.git','.hg','.svn','.bzr','_darc
 let $FZF_DEFAULT_COMMAND = 'rg --files'
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_buffers_jump = 1
-command! FzfProjectFiles execute 'FzfFiles' projectroot#guess()
-nnoremap <silent> <Leader><Space> :FzfProjectFiles<CR>
+"command! FzfProjectFiles execute 'FzfFiles' projectroot#guess()
+nnoremap <silent> <Leader><Space> :FzfFiles<CR>
 nnoremap <silent> <Leader>f :FzfRg<CR>
 nnoremap <silent> <Leader>a :FzfBuffers<CR>
 nnoremap <silent> <Leader>A :FzfWindows<CR>
@@ -252,6 +259,8 @@ nnoremap <silent> <Leader>yr :YcmCompleter GoToReferences<CR>
 nnoremap <Leader>yd :YcmDiags<CR>
 nnoremap <Leader>yf :YcmCompleter FixIt<CR>
 nnoremap <Leader>y: :YcmCompleter<Space>
+
+au BufWrite *.go :Autoformat
 
 let g:gutentags_project_root_finder = 'projectroot#guess'
 let g:gutentags_generate_on_missing = 0
@@ -273,3 +282,11 @@ let g:ycm_enable_diagnostic_signs=0
 com -range=% -nargs=1 P exe "<line1>,<line2>!".<q-args> | y | sil u | echom @"
 com -range=% Hash <line1>,<line2>P cpp -P -fpreprocessed | tr -d '[:space:]' | md5sum
 au FileType cpp com! -buffer -range=% Hash <line1>,<line2>P cpp -P -fpreprocessed | tr -d '[:space:]' | md5sum
+
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
