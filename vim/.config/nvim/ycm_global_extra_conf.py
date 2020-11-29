@@ -17,7 +17,7 @@ BASE_FLAGS = [
     '-Wlogical-op',
     '-Wcast-qual',
     '-Wcast-align',
-    '-std=c++11',
+    '-std=c++17',
     '-x',
     'c++',
 ]
