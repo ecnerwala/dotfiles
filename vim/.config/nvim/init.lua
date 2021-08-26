@@ -10,7 +10,7 @@ vim.g.maplocalleader = t'<Space>'
 vim.fn['plug#begin']()
 
 -- Navigation plugins
-vim.cmd [[Plug 'rbgrouleff/bclose.vim']] 
+vim.cmd [[Plug 'rbgrouleff/bclose.vim']]
 vim.cmd [[Plug 'scrooloose/nerdtree']]
 
 -- UI Plugins
@@ -25,6 +25,9 @@ vim.cmd [[Plug 'scrooloose/nerdcommenter']]
 vim.cmd [[Plug 'tpope/vim-sleuth']]
 vim.cmd [[Plug 'airblade/vim-gitgutter']]
 vim.cmd [[Plug 'editorconfig/editorconfig-vim']]
+
+vim.cmd [[Plug 'junegunn/fzf']]
+vim.cmd [[Plug 'junegunn/fzf.vim']]
 
 vim.cmd [[Plug 'neovim/nvim-lspconfig']]
 vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}]]
@@ -66,7 +69,7 @@ vim.opt.listchars = {
 vim.opt.undofile = true
 
 vim.opt.autoread = true
-vim.cmd [[autocmd BufEnter,FocusGained * checktime]]
+vim.cmd [[autocmd BufEnter,FocusGained * if mode() == 'n' && getcmdwintype() == '' | checktime | endif]]
 
 -- Update gutters 200 ms
 vim.opt.updatetime = 200
@@ -121,6 +124,11 @@ vim.cmd [[set errorformat^=%-GIn\ file\ included\ %.%#]]
 
 vim.g.NERDAltDelims_c = 1
 
+vim.api.nvim_set_keymap("n", "<Leader>n", "<Cmd>silent! NERDTreeFind<CR><Cmd>NERDTreeFocus<CR>", { silent=true, noremap=true })
+
+vim.g.fzf_command_prefix = 'Fzf'
+vim.api.nvim_set_keymap("n", "<Leader><Space>", "<Cmd>FzfFiles<CR>", { silent=true, noremap=true })
+vim.api.nvim_set_keymap("n", "<Leader>f", "<Cmd>FzfRg<CR>", { silent=true, noremap=true })
 
 -- Treesitter
 
@@ -139,13 +147,15 @@ treesitter_parser_configs.cpp = {
 
 treesitter.setup {
     ensure_installed = 'maintained',
-    highlight = { enable = true },
-    indent = { enable = true },
+    highlight = { enable = true, additional_vim_regex_highlighting = true },
+    --indent = { enable = true },
 }
 
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldlevel = 1
+--vim.opt.foldmethod = 'expr'
+--vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+--vim.opt.foldlevel = 1
+
+vim.opt.foldmethod = 'syntax'
 
 -- LSP
 
@@ -156,7 +166,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     underline = true,
     virtual_text = {
       spacing = 8,
-      severity_limit = 'Error',
     },
     signs = false,
     update_in_insert = false,
@@ -195,12 +204,31 @@ local lsp_on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<Leader>lq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<Leader>lw', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+  if client.resolved_capabilities.document_formatting then
+    buf_set_keymap('n', '<Leader>lw', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  end
+  if client.resolved_capabilities.document_range_formatting then
+    buf_set_keymap('v', '<Leader>lw', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
+  end
+
+  if client.resolved_capabilities.document_highlight then
+    vim.cmd [[
+    augroup lsp_document_highlight
+    autocmd! * <buffer>
+    autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    ]]
+  end
 end
+
+vim.cmd [[highlight LspReferenceText cterm=bold guibg=LightYellow]]
+vim.cmd [[highlight LspReferenceRead cterm=bold ctermbg=0 guibg=LightYellow]]
+vim.cmd [[highlight LspReferenceWrite cterm=bold ctermbg=0 guibg=LightYellow]]
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "clangd" }
+local servers = { "clangd", "tsserver" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = lsp_on_attach,
