@@ -121,7 +121,7 @@ _gen_fzf_default_opts_solarized() {
     --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
   "
 }
-if [[ "$TERM" == "rxvt-unicode-256color" || "$TERM" == "xterm-termite" ]]; then
+if [[ "$TERM" == "rxvt-unicode-256color" || "$TERM" == "xterm-termite" || "$TERM" == "alacritty" ]]; then
   _gen_fzf_default_opts_solarized
 fi
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
