@@ -139,14 +139,15 @@ bindsym $mod+Shift+asterisk move container to workspace number 8
 bindsym $mod+Shift+parenleft move container to workspace number 9
 bindsym $mod+Shift+parenright move container to workspace number 10
 
-set $primary_monitor "eDP1"
-set $secondary_monitor "HDMI1"
+set $primary_monitor "DP2-2-1"
+set $secondary_monitor "eDP1"
+set $tertiary_monitor "DP1"
 workspace 1 output $primary_monitor
 workspace 2 output $primary_monitor
 workspace 3 output $primary_monitor
 workspace 4 output $primary_monitor
-workspace 5 output $primary_monitor
-workspace 6 output $secondary_monitor
+workspace 5 output $tertiary_monitor
+workspace 6 output $tertiary_monitor
 workspace 7 output $secondary_monitor
 workspace 8 output $secondary_monitor
 workspace 9 output $secondary_monitor
@@ -163,6 +164,7 @@ bindsym $mod+Shift+E exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 #lock screen
 bindsym $mod+Escape exec --no-startup-id i3lock -c 000000 && xset dpms force off
+#bindsym $mod+Escape exec --no-startup-id xset dpms force off
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -176,12 +178,20 @@ mode "resize" {
 	bindsym j resize grow height 10 px or 10 ppt
 	bindsym k resize shrink height 10 px or 10 ppt
 	bindsym l resize grow width 10 px or 10 ppt
+	bindsym Shift+H resize shrink width 1 px or 1 ppt
+	bindsym Shift+J resize grow height 1 px or 1 ppt
+	bindsym Shift+K resize shrink height 1 px or 1 ppt
+	bindsym Shift+L resize grow width 1 px or 1 ppt
 
 	# same bindings, but for the arrow keys
 	bindsym Left resize shrink width 10 px or 10 ppt
 	bindsym Down resize grow height 10 px or 10 ppt
 	bindsym Up resize shrink height 10 px or 10 ppt
 	bindsym Right resize grow width 10 px or 10 ppt
+	bindsym Shift+Left resize shrink width 1 px or 1 ppt
+	bindsym Shift+Down resize grow height 1 px or 1 ppt
+	bindsym Shift+Up resize shrink height 1 px or 1 ppt
+	bindsym Shift+Right resize grow width 1 px or 1 ppt
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"
