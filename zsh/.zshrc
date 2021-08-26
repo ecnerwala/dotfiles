@@ -188,6 +188,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH="$HOME/.local/6828-qemu/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.luarocks/bin:$PATH"
 
 if [[ $TERM == xterm-termite ]]; then
   . /etc/profile.d/vte.sh
