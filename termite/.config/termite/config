@@ -1,5 +1,6 @@
 [options]
 font = DejaVu Sans Mono for Powerline 9
+scrollback_lines = 10000
 
 [colors]
 # Solarized light color scheme
