@@ -16,7 +16,7 @@ xset mouse 2/1 0 &
 
 [ -f ~/.xbindkeysrc ] && xbindkeys -p &
 
-[ -f ~/.Xresources ] && xrdb ~/.Xresources &
+[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources &
 
 [ -f ~/.screenlayout/auto-config.sh ] && srandrd ~/.screenlayout/auto-config.sh && ~/.screenlayout/auto-config.sh &
 
