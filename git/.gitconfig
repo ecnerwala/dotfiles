@@ -31,6 +31,7 @@
 	git = !git
 	g = !git
 	arc = !arc
+	lazy = !lazygit
 [core]
 	excludesFile = ~/.gitignore_global
 	autocrlf = input
