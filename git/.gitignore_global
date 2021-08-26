@@ -102,3 +102,7 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+
+# Compililation databases - these contain machine specific paths and should be
+# programatically generated
+compile_commands.json
