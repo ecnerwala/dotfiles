@@ -37,13 +37,13 @@
 #keystate_capslock = enable
 #keystate_scrolllock= enable
 
-"pulseaudio-ctl mute"
+"pamixer --toggle-mute"
   XF86AudioMute
 
-"pulseaudio-ctl down"
+"pamixer --decrease 5"
   XF86AudioLowerVolume
 
-"pulseaudio-ctl up"
+"pamixer --increase 5"
   XF86AudioRaiseVolume
 
 "pulseaudio-ctl mute-input"
