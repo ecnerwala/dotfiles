@@ -205,7 +205,12 @@ bindsym $mod+m exec --no-startup-id i3-input -F 'mark %s' -l 1 -P 'Mark: '
 bindsym $mod+Shift+M exec --no-startup-id i3-input -F 'mark %s' -P 'Mark: '
 bindsym $mod+Ctrl+m exec --no-startup-id i3-input -F 'unmark %s' -P 'Unmark: '
 bindsym $mod+apostrophe exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Go to: '
-bindsym $mod+Shift+quotedbl exec --nostartup-id i3-input -F '[con_mark="%s"] focus' -P 'Go to: '
+bindsym $mod+Shift+quotedbl exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -P 'Go to: '
+
+bindsym $mod+period exec --no-startup-id dunstctl close
+bindsym $mod+Ctrl+period exec --no-startup-id dunstctl close-all
+bindsym $mod+comma exec --no-startup-id dunstctl history-pop
+bindsym $mod+Shift+period exec --no-startup-id dunstctl context
 
 # KDE support
 for_window [class="Plasma-desktop"] border none
