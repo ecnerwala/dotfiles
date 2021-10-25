@@ -34,10 +34,14 @@ vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}]]
 vim.cmd [[Plug 'nvim-treesitter/playground']]
 vim.cmd [[Plug 'hrsh7th/nvim-compe']]
 
+vim.cmd [[Plug 'tpope/vim-fugitive']]
+
 -- Language specific
 --TODO
 vim.cmd [[Plug 'lervag/vimtex', { 'for': 'tex' }]]
 vim.cmd [[Plug 'vim-pandoc/vim-pandoc']]
+vim.cmd [[Plug 'Vimjas/vim-python-pep8-indent']]
+vim.cmd [[Plug 'maxmellon/vim-jsx-pretty']]
 
 -- Note taking
 vim.cmd [[Plug 'lukaszkorecki/workflowish']]
@@ -166,6 +170,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     underline = true,
     virtual_text = {
       spacing = 8,
+      severity_limit = "Error",
     },
     signs = false,
     update_in_insert = false,
@@ -228,7 +233,7 @@ vim.cmd [[highlight LspReferenceWrite cterm=bold ctermbg=0 guibg=LightYellow]]
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "clangd", "tsserver" }
+local servers = { "clangd", "tsserver", "pylsp" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = lsp_on_attach,
