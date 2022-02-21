@@ -106,3 +106,5 @@ fabric.properties
 # Compililation databases - these contain machine specific paths and should be
 # programatically generated
 compile_commands.json
+
+.ignored/
