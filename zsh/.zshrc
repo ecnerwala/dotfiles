@@ -202,7 +202,10 @@ eval "$(nodenv init -)"
 
 export NODE_OPTIONS=--openssl-legacy-provider
 
-#eval "$(pyenv init --path)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 #ulimit -s 131072
