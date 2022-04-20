@@ -137,7 +137,7 @@ vim.cmd [[set errorformat^=%-GIn\ file\ included\ %.%#]]
 
 vim.g.NERDAltDelims_c = 1
 
-vim.api.nvim_set_keymap("n", "<Leader>n", "<Cmd>silent! NERDTreeFind<CR><Cmd>NERDTreeFocus<CR>", { silent=true, noremap=true })
+vim.api.nvim_set_keymap("n", "<Leader>n", "<Cmd>NERDTreeClose<CR><Cmd>silent! NERDTreeFind<CR><Cmd>NERDTreeFocus<CR>", { silent=true, noremap=true })
 
 vim.g.fzf_command_prefix = 'Fzf'
 vim.api.nvim_set_keymap("n", "<Leader><Space>", "<Cmd>call fzf#vim#gitfiles('-co --exclude-standard')<CR>", { silent=true, noremap=true })
