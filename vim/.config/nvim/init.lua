@@ -50,6 +50,7 @@ vim.cmd [[Plug 'lervag/vimtex', { 'for': 'tex' }]]
 vim.cmd [[Plug 'vim-pandoc/vim-pandoc']]
 vim.cmd [[Plug 'Vimjas/vim-python-pep8-indent']]
 vim.cmd [[Plug 'maxmellon/vim-jsx-pretty']]
+vim.cmd [[Plug 'iden3/vim-circom-syntax']]
 
 -- Note taking
 vim.cmd [[Plug 'lukaszkorecki/workflowish']]
@@ -159,7 +160,7 @@ local treesitter_parser_configs = require('nvim-treesitter.parsers').get_parser_
 --}
 
 treesitter.setup {
-    ensure_installed = 'maintained',
+    ensure_installed = 'all',
     highlight = { enable = true, additional_vim_regex_highlighting = true },
     --indent = { enable = true },
 }
@@ -272,9 +273,13 @@ local lsp_on_attach = function(client, bufnr)
 
   if client.resolved_capabilities.document_formatting then
     buf_set_keymap('n', '<Leader>lw', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  else
+    buf_set_keymap('n', '<Leader>lw', '<cmd>echom "LSP formatting not supported"<CR>', opts)
   end
   if client.resolved_capabilities.document_range_formatting then
     buf_set_keymap('v', '<Leader>lw', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
+  else
+    buf_set_keymap('v', '<Leader>lw', '<cmd>echom "LSP range formatting not supported"<CR>', opts)
   end
 
   if client.resolved_capabilities.document_highlight then
@@ -313,11 +318,13 @@ end
 -- LaTeX configuration
 vim.g.tex_flavor = 'latex'
 vim.g.vimtex_compiler_progname = 'nvr'
-vim.g.vimtex_quickfix_latexlog = { fix_paths = 0 }
+--vim.g.vimtex_quickfix_latexlog = { fix_paths = 0 }
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_quickfix_open_on_warning = 0
 
 vim.opt.printoptions:append{ paper = 'letter' }
+
+vim.cmd [[autocmd BufNewFile,BufReadPost *.sol set filetype=solidity]]
 
 vim.cmd [[autocmd BufNewFile,BufReadPost *.md set filetype=pandoc]]
 
