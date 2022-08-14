@@ -37,12 +37,13 @@ vim.cmd [[Plug 'hrsh7th/cmp-buffer']]
 vim.cmd [[Plug 'hrsh7th/cmp-path']]
 vim.cmd [[Plug 'hrsh7th/cmp-cmdline']]
 vim.cmd [[Plug 'hrsh7th/cmp-nvim-lsp']]
+vim.cmd [[Plug 'hrsh7th/cmp-vsnip']]
 vim.cmd [[Plug 'hrsh7th/vim-vsnip']]
 
 vim.cmd [[Plug 'tpope/vim-fugitive']]
 
-vim.cmd [[Plug 'github/copilot.vim']]
-vim.cmd [[Plug 'hrsh7th/cmp-copilot']]
+--vim.cmd [[Plug 'github/copilot.vim']]
+--vim.cmd [[Plug 'hrsh7th/cmp-copilot']]
 
 -- Language specific
 --TODO
@@ -51,6 +52,7 @@ vim.cmd [[Plug 'vim-pandoc/vim-pandoc']]
 vim.cmd [[Plug 'Vimjas/vim-python-pep8-indent']]
 vim.cmd [[Plug 'maxmellon/vim-jsx-pretty']]
 vim.cmd [[Plug 'iden3/vim-circom-syntax']]
+vim.cmd [[Plug 'tmhedberg/SimpylFold']]
 
 -- Note taking
 vim.cmd [[Plug 'lukaszkorecki/workflowish']]
@@ -120,7 +122,7 @@ vim.g.bufferline_rotate = 1
 vim.g.bufferline_fixed_index = -1
 vim.g.bufferline_echo = 0
 
-if vim.env.TERM == 'rxvt' or vim.env.TERM == 'termite' or vim.env.TERM == 'alacritty' then
+if vim.env.TERM == 'rxvt' or vim.env.TERM == 'termite' or vim.env.TERM == 'alacritty' or vim.env.TERM == 'xterm-kitty' then
   vim.g.solarized_visibility = 'low'
   vim.opt.background = 'dark'
   vim.cmd [[colorscheme solarized]]
@@ -186,16 +188,22 @@ cmp.setup({
       -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
   },
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
   mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ['<C-y>'] = cmp.mapping.confirm({ select = false }), -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
-    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    -- ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -297,6 +305,7 @@ vim.cmd [[highlight LspReferenceRead cterm=bold ctermbg=0 guibg=LightYellow]]
 vim.cmd [[highlight LspReferenceWrite cterm=bold ctermbg=0 guibg=LightYellow]]
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.offsetEncoding = "utf-8"
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
