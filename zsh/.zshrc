@@ -121,7 +121,7 @@ _gen_fzf_default_opts_solarized() {
     --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
   "
 }
-if [[ "$TERM" == "rxvt-unicode-256color" || "$TERM" == "xterm-termite" || "$TERM" == "alacritty" ]]; then
+if [[ "$TERM" == "rxvt-unicode-256color" || "$TERM" == "xterm-termite" || "$TERM" == "alacritty" || "$TERM" == "xterm-kitty" ]]; then
   _gen_fzf_default_opts_solarized
 fi
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
@@ -204,8 +204,8 @@ export NODE_OPTIONS=--openssl-legacy-provider
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv init --path)"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
 #ulimit -s 131072
