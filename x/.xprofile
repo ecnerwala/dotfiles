@@ -26,7 +26,7 @@ xrandr --output eDP1 --primary &
 
 lxpolkit &
 
-eval `ssh-agent`
+eval $(ssh-agent)
 
 ~/.starttray.sh &
 
