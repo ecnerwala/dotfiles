@@ -141,9 +141,9 @@ bindsym $mod+Shift+asterisk move container to workspace number 8
 bindsym $mod+Shift+parenleft move container to workspace number 9
 bindsym $mod+Shift+parenright move container to workspace number 10
 
-set $primary_monitor "DP2-2-1"
+set $primary_monitor "DP1"
 set $secondary_monitor "eDP1"
-set $tertiary_monitor "DP1"
+set $tertiary_monitor "DP2-2-1"
 workspace 1 output $primary_monitor
 workspace 2 output $primary_monitor
 workspace 3 output $primary_monitor
