@@ -58,7 +58,7 @@
 "arandr"
   XF86Display
 
-"maim -s ~/Dropbox/Screenshots/$(date +%Y-%m-%d-%H%M%S)_maim.png"
+"maim -u -s ~/Dropbox/Screenshots/$(date +%Y-%m-%d-%H%M%S)_maim.png"
   Print + Release
 
 # Examples of commands:
