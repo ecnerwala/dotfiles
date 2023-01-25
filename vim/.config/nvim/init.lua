@@ -42,6 +42,8 @@ vim.cmd [[Plug 'hrsh7th/vim-vsnip']]
 
 vim.cmd [[Plug 'tpope/vim-fugitive']]
 
+vim.cmd [[Plug 'Exafunction/codeium.vim']]
+
 --vim.cmd [[Plug 'github/copilot.vim']]
 --vim.cmd [[Plug 'hrsh7th/cmp-copilot']]
 
