@@ -1,7 +1,7 @@
 [core]
 	editor = nvim
 [user]
-	email = ecnerwala@users.noreply.github.com
+	email = 7088371+ecnerwala@users.noreply.github.com
 	name = Andrew He
 [push]
 	default = simple
@@ -32,6 +32,8 @@
 	g = !git
 	arc = !arc
 	lazy = !lazygit
+	gh = !gh
+	hub = !gh
 [core]
 	excludesFile = ~/.gitignore_global
 	autocrlf = input
