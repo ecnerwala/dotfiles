@@ -76,9 +76,11 @@ vim.opt.conceallevel = 2
 vim.opt.list = true
 vim.opt.listchars = {
     tab = '» ',
+    leadmultispace = '·',
     trail = '␣',
     extends = '▶',
     precedes = '◀',
+    nbsp = '␣',
 }
 
 vim.opt.undofile = true
@@ -129,6 +131,7 @@ if vim.env.TERM == 'rxvt' or vim.env.TERM == 'termite' or vim.env.TERM == 'alacr
 end
 
 vim.cmd [[highlight! link SignColumn LineNr]]
+vim.cmd [[highlight NonText ctermfg=10 cterm=NONE]]
 
 vim.opt.spellfile = vim.fn.stdpath('config') .. '/spell/en.utf-8.add'
 
