@@ -90,6 +90,15 @@ vim.opt.undofile = true
 vim.opt.autoread = true
 vim.cmd [[autocmd BufEnter,FocusGained * if mode() == 'n' && getcmdwintype() == '' | checktime | endif]]
 
+vim.cmd [[
+function! Syn()
+  for id in synstack(line("."), col("."))
+    echo synIDattr(id, "name")
+  endfor
+endfunction
+command! -nargs=0 Syn call Syn()
+]]
+
 -- Update gutters 200 ms
 vim.opt.updatetime = 200
 
@@ -150,6 +159,7 @@ vim.api.nvim_set_keymap("n", "<Leader>n", "<Cmd>NERDTreeClose<CR><Cmd>silent! NE
 vim.g.fzf_command_prefix = 'Fzf'
 vim.api.nvim_set_keymap("n", "<Leader><Space>", "<Cmd>call fzf#vim#gitfiles('-co --exclude-standard')<CR>", { silent=true, noremap=true })
 vim.api.nvim_set_keymap("n", "<Leader>f", "<Cmd>FzfRg<CR>", { silent=true, noremap=true })
+vim.api.nvim_set_keymap("n", "<Leader>b", "<Cmd>FzfBuffers<CR>", { silent=true, noremap=true })
 
 -- Treesitter
 
@@ -284,18 +294,18 @@ local lsp_on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<Leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
-  if client.resolved_capabilities.document_formatting then
-    buf_set_keymap('n', '<Leader>lw', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  if client.server_capabilities.documentFormattingProvider then
+    buf_set_keymap('n', '<Leader>lw', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
   else
     buf_set_keymap('n', '<Leader>lw', '<cmd>echom "LSP formatting not supported"<CR>', opts)
   end
-  if client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap('v', '<Leader>lw', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
+  if client.server_capabilities.documentRangeFormattingProvider then
+    buf_set_keymap('v', '<Leader>lw', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
   else
     buf_set_keymap('v', '<Leader>lw', '<cmd>echom "LSP range formatting not supported"<CR>', opts)
   end
 
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.documentHighlightProvider then
     vim.cmd [[
     augroup lsp_document_highlight
     autocmd! * <buffer>
@@ -309,7 +319,7 @@ vim.cmd [[highlight LspReferenceText cterm=bold guibg=LightYellow]]
 vim.cmd [[highlight LspReferenceRead cterm=bold ctermbg=0 guibg=LightYellow]]
 vim.cmd [[highlight LspReferenceWrite cterm=bold ctermbg=0 guibg=LightYellow]]
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.offsetEncoding = "utf-8"
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -324,6 +334,14 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+nvim_lsp["kotlin_language_server"].setup {
+  on_attach = lsp_on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern("settings.gradle", "Makefile")
+}
 
 ------------------------------
 -- Language specific config --
