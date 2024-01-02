@@ -18,7 +18,7 @@ order += "ipv6"
 order += "run_watch DHCP"
 order += "run_watch VPN"
 order += "wireless wlp2s0"
-order += "ethernet eth0"
+order += "ethernet enp0s31f6"
 order += "battery 0"
 #order += "battery 1"
 order += "volume master"
@@ -30,7 +30,7 @@ wireless wlp2s0 {
         format_down = "W: down"
 }
 
-ethernet eth0 {
+ethernet enp0s31f6 {
         # if you use %speed, i3status requires root privileges
         format_up = "E: %ip (%speed)"
         format_down = "E: down"
