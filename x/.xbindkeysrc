@@ -58,7 +58,7 @@
 "arandr"
   XF86Display
 
-"maim -u -s ~/Dropbox/Screenshots/$(date +%Y-%m-%d-%H%M%S)_maim.png"
+"LOC="${HOME}/Dropbox/Screenshots/$(date +%Y-%m-%d-%H%M%S)_maim.png" && maim -u -s "${LOC}" && xclip -selection clipboard -t image/png "${LOC}""
   Print + Release
 
 # Examples of commands:
