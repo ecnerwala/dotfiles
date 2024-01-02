@@ -1,3 +1,4 @@
+#eval "$(termium shell-hook show pre)"
 export DEFAULT_USER=andrew
 
 # Path to your oh-my-zsh installation.
@@ -170,16 +171,6 @@ function mkcd {
 
 unset GREP_OPTIONS
 
-# virtualenv wrapper setup
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/projects
-source /usr/bin/virtualenvwrapper_lazy.sh
-if [ -n "$VIRTUAL_ENV" ]; then
-  . "$VIRTUAL_ENV/bin/activate"
-else
-  #workon default
-fi
-
 export PATH=$PATH:~/.yarn/bin
 
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -200,12 +191,33 @@ eval "$(direnv hook zsh)"
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 
-export NODE_OPTIONS=--openssl-legacy-provider
+#export NODE_OPTIONS=--openssl-legacy-provider
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init --path)"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+#
+# virtualenv wrapper setup
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/projects
+#source /usr/bin/virtualenvwrapper_lazy.sh
+pyenv virtualenvwrapper_lazy
+
+if [ -n "$VIRTUAL_ENV" ]; then
+  . "$VIRTUAL_ENV/bin/activate"
+else
+  #workon default
+fi
+
 
 #ulimit -s 131072
+
+export PATH="$PATH:/home/andrew/.foundry/bin"
+
+export PATH="/home/andrew/.local/share/solana/install/active_release/bin:$PATH"
+
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$PATH:$HOME/.elan/bin"
+#eval "$(termium shell-hook show post)"
