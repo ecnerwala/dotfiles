@@ -319,13 +319,12 @@ vim.cmd [[highlight LspReferenceText cterm=bold guibg=LightYellow]]
 vim.cmd [[highlight LspReferenceRead cterm=bold ctermbg=0 guibg=LightYellow]]
 vim.cmd [[highlight LspReferenceWrite cterm=bold ctermbg=0 guibg=LightYellow]]
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-capabilities.offsetEncoding = "utf-8"
-
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "clangd", "tsserver", "pyright", "rust_analyzer", "gopls", "solc" }
+local servers = { "clangd", "tsserver", "pyright", "gopls" }
 for _, lsp in ipairs(servers) do
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  capabilities.offsetEncoding = "utf-8"
   nvim_lsp[lsp].setup {
     on_attach = lsp_on_attach,
     flags = {
@@ -334,6 +333,35 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+if false then
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  capabilities.offsetEncoding = "utf-8"
+  nvim_lsp["solc"].setup {
+    on_attach = lsp_on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    capabilities = capabilities,
+    root_dir = require('lspconfig.util').root_pattern('hardhat.config.*', 'foundry.toml', '.git')
+  }
+end
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+nvim_lsp["rust_analyzer"].setup {
+  on_attach = lsp_on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  capabilities = capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      diagnostics = {
+        disabled = { "unresolved-proc-macro" },
+      },
+    }
+  }
+}
 nvim_lsp["kotlin_language_server"].setup {
   on_attach = lsp_on_attach,
   flags = {
@@ -354,7 +382,7 @@ vim.g.vimtex_compiler_progname = 'nvr'
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_quickfix_open_on_warning = 0
 
-vim.opt.printoptions:append{ paper = 'letter' }
+--vim.opt.printoptions:append{ paper = 'letter' }
 
 vim.cmd [[autocmd BufNewFile,BufReadPost *.sol set filetype=solidity]]
 
