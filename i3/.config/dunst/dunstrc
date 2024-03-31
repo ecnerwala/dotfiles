@@ -137,7 +137,7 @@
     #
     # It's important to note that markup inside the format option will be parsed
     # regardless of what this is set to.
-    markup = full
+    markup = no
 
     # The format of the message.  Possible variables are:
     #   %a  appname
