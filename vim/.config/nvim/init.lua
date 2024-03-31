@@ -135,7 +135,7 @@ vim.g.bufferline_rotate = 1
 vim.g.bufferline_fixed_index = -1
 vim.g.bufferline_echo = 0
 
-if vim.env.TERM == 'rxvt' or vim.env.TERM == 'termite' or vim.env.TERM == 'alacritty' or vim.env.TERM == 'xterm-kitty' then
+if vim.env.TERM == 'rxvt' or vim.env.TERM == 'termite' or vim.env.TERM == 'alacritty' or vim.env.TERM == 'xterm-kitty' or vim.env.TERM_PROGRAM == 'iTerm.app' then
   vim.g.solarized_visibility = 'low'
   vim.opt.background = 'dark'
   vim.cmd [[colorscheme solarized]]
