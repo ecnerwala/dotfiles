@@ -17,7 +17,9 @@ vim.cmd [[Plug 'scrooloose/nerdtree']]
 vim.cmd [[Plug 'vim-airline/vim-airline']]
 vim.cmd [[Plug 'vim-airline/vim-airline-themes']]
 vim.cmd [[Plug 'bling/vim-bufferline']]
-vim.cmd [[Plug 'altercation/vim-colors-solarized']]
+--vim.cmd [[Plug 'altercation/vim-colors-solarized']]
+--vim.cmd [[Plug 'overcache/NeoSolarized']]
+vim.cmd [[Plug 'lifepillar/vim-solarized8', {'branch': 'neovim'}]]
 
 -- Editor plugins
 vim.cmd [[Plug 'Raimondi/delimitMate']]
@@ -137,11 +139,21 @@ vim.g.bufferline_echo = 0
 
 if vim.env.TERM == 'rxvt' or vim.env.TERM == 'termite' or vim.env.TERM == 'alacritty' or vim.env.TERM == 'xterm-kitty' or vim.env.TERM_PROGRAM == 'iTerm.app' then
   vim.g.solarized_visibility = 'low'
-  vim.opt.background = 'dark'
-  vim.cmd [[colorscheme solarized]]
+  --vim.g.neosolarized_contrast = 'normal'
+  vim.opt.background = 'light'
+  --vim.cmd [[colorscheme solarized]]
+  --vim.cmd [[colorscheme NeoSolarized]]
+  vim.cmd [[colorscheme solarized8]]
 end
 
+-- Fix airline: https://github.com/vim-airline/vim-airline/issues/2693
+vim.cmd [[highlight statusline cterm=NONE gui=NONE]]
+vim.cmd [[highlight tabline cterm=NONE gui=NONE]]
+vim.cmd [[highlight winbar cterm=NONE gui=NONE]]
+
 vim.cmd [[highlight! link SignColumn LineNr]]
+-- Hack to fix tensor
+vim.cmd [[highlight! link cErrInBracket cBracket]]
 vim.cmd [[highlight NonText ctermfg=10 cterm=NONE]]
 
 vim.opt.spellfile = vim.fn.stdpath('config') .. '/spell/en.utf-8.add'
