@@ -11,7 +11,7 @@ vim.fn['plug#begin']()
 
 -- Navigation plugins
 vim.cmd [[Plug 'rbgrouleff/bclose.vim']]
-vim.cmd [[Plug 'scrooloose/nerdtree']]
+vim.cmd [[Plug 'preservim/nerdtree']]
 
 -- UI Plugins
 vim.cmd [[Plug 'vim-airline/vim-airline']]
@@ -44,7 +44,7 @@ vim.cmd [[Plug 'hrsh7th/vim-vsnip']]
 
 vim.cmd [[Plug 'tpope/vim-fugitive']]
 
-vim.cmd [[Plug 'Exafunction/codeium.vim']]
+--vim.cmd [[Plug 'Exafunction/codeium.vim']]
 
 --vim.cmd [[Plug 'github/copilot.vim']]
 --vim.cmd [[Plug 'hrsh7th/cmp-copilot']]
