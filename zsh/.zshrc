@@ -68,7 +68,7 @@ export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/
 export EDITOR='nvim'
 
 # Compilation flags
-export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
