@@ -266,7 +266,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     underline = true,
     virtual_text = {
       spacing = 8,
-      severity_limit = "Error",
+      min = vim.diagnostic.severity.ERROR,
     },
     signs = false,
     update_in_insert = false,
@@ -300,6 +300,7 @@ local lsp_on_attach = function(client, bufnr)
   buf_set_keymap('n', '<Leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 
   buf_set_keymap('n', '<Leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<Leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<Leader>lf', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<Leader>le', '<cmd>lua vim.diagnostic.open_float({scope="c"})<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -333,7 +334,7 @@ vim.cmd [[highlight LspReferenceWrite cterm=bold ctermbg=0 guibg=LightYellow]]
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "clangd", "tsserver", "pyright", "gopls" }
+local servers = { "clangd", "ts_ls", "pyright", "gopls" }
 for _, lsp in ipairs(servers) do
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   capabilities.offsetEncoding = "utf-8"
