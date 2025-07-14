@@ -11,7 +11,7 @@ set $right l
 # Your preferred terminal emulator
 set $term alacritty
 # Your preferred application launcher
-set $menu wmenu-run
+set $menu j4-dmenu-desktop --dmenu="wmenu" --no-generic --display-binary --term="$term"
 
 ### Output configuration
 #
@@ -55,7 +55,7 @@ set $menu wmenu-run
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
 
-font pango:DejaVu Sans Mono 9
+font pango:DejaVu Sans Mono 9.5
 
 ### Key bindings
 #
@@ -265,15 +265,26 @@ output "eDP-1" scale 1.25
     bindsym XF86Display exec nwg-displays
 
 #
+# Notifications
+#
+
+    bindsym $mod+Period exec makoctl dismiss
+    bindsym $mod+Shift+Period exec makoctl dismiss --all
+    bindsym $mod+Comma exec makoctl restore
+    bindsym $mod+Shift+Comma exec makoctl menu wmenu
+
+#
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position bottom
 
+    swaybar_command waybar
+
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command i3status
 
     colors {
         statusline #ffffff
@@ -281,5 +292,7 @@ bar {
         inactive_workspace #323232 #323232 #5c5c5c
     }
 }
+
+exec dropbox-cli start
 
 include /etc/sway/config.d/*
