@@ -32,7 +32,8 @@ vim.cmd [[Plug 'junegunn/fzf']]
 vim.cmd [[Plug 'junegunn/fzf.vim']]
 
 vim.cmd [[Plug 'neovim/nvim-lspconfig']]
-vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}]]
+-- Pin to the legacy master branch (main is an incompatible rewrite)
+vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'master', 'do': ':TSUpdate'}]]
 vim.cmd [[Plug 'nvim-treesitter/playground']]
 vim.cmd [[Plug 'hrsh7th/nvim-cmp']]
 vim.cmd [[Plug 'hrsh7th/cmp-buffer']]
@@ -190,6 +191,7 @@ local treesitter_parser_configs = require('nvim-treesitter.parsers').get_parser_
 
 treesitter.setup {
     ensure_installed = 'all',
+    ignore_install = {"ipkg"},
     highlight = { enable = true, additional_vim_regex_highlighting = true },
     --indent = { enable = true },
 }
