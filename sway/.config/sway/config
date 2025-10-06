@@ -70,7 +70,9 @@ font pango:DejaVu Sans Mono 9.5
     # Start your launcher
     bindsym $mod+Space exec $menu
 
-    bindsym $mod+Escape exec swaylock -c 202020 -f
+    bindsym $mod+Escape exec swaylock -c 202020 -f && swaymsg "output * power off"
+    bindsym --locked $mod+Shift+Escape exec swaymsg "output * power on"
+    # bindsym $mod+Escape exec swaylock -c 202020 -f
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
