@@ -350,30 +350,32 @@ local servers = { "clangd", "ts_ls", "pyright", "gopls" }
 for _, lsp in ipairs(servers) do
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   capabilities.offsetEncoding = "utf-8"
-  nvim_lsp[lsp].setup {
+  vim.lsp.config(lsp, {
     on_attach = lsp_on_attach,
     flags = {
       debounce_text_changes = 150,
     },
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable(lsp)
 end
 
 if false then
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   capabilities.offsetEncoding = "utf-8"
-  nvim_lsp["solc"].setup {
+  vim.lsp.config("solc", {
     on_attach = lsp_on_attach,
     flags = {
       debounce_text_changes = 150,
     },
     capabilities = capabilities,
-    root_dir = require('lspconfig.util').root_pattern('hardhat.config.*', 'foundry.toml', '.git')
-  }
+    root_dir = nvim_lsp.util.root_pattern('hardhat.config.*', 'foundry.toml', '.git')
+  })
+  vim.lsp.enable("solc")
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-nvim_lsp["rust_analyzer"].setup {
+vim.lsp.config("rust_analyzer", {
   on_attach = lsp_on_attach,
   flags = {
     debounce_text_changes = 150,
@@ -386,15 +388,17 @@ nvim_lsp["rust_analyzer"].setup {
       },
     }
   }
-}
-nvim_lsp["kotlin_language_server"].setup {
+})
+vim.lsp.enable("rust_analyzer")
+vim.lsp.config("kotlin_language_server", {
   on_attach = lsp_on_attach,
   flags = {
     debounce_text_changes = 150,
   },
   capabilities = capabilities,
-  root_dir = nvim_lsp.util.root_pattern("settings.gradle", "Makefile")
-}
+  root_markers = { 'settings.gradle', 'Makefile' }
+})
+vim.lsp.enable("kotlin_language_server")
 
 ------------------------------
 -- Language specific config --
