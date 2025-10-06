@@ -32,7 +32,9 @@ foreground = "#657b83"
 
 [font]
 #size = 9
-size = 10
+#size = 10
+# No idea why this looks better, but it does, maybe it's some interaction with fractional scaling?
+size = 10.2
 
 [font.normal]
 family = "DejaVu Sans Mono for Powerline"
