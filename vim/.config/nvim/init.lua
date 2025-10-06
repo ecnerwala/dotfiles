@@ -275,6 +275,16 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+vim.diagnostic.config({
+  underline = true,
+  virtual_text = {
+    spacing = 8,
+    min = vim.diagnostic.severity.ERROR,
+  },
+  signs = false,
+  update_in_insert = false,
+})
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local lsp_on_attach = function(client, bufnr)
