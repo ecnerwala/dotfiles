@@ -266,7 +266,7 @@ output "eDP-1" scale 1.25
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec /usr/share/sway-contrib/grimshot savecopy anything
+    bindsym Print exec grimshot savecopy anything
     bindsym XF86Display exec nwg-displays
 
 #
