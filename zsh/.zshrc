@@ -220,4 +220,5 @@ export PATH="/home/andrew/.local/share/solana/install/active_release/bin:$PATH"
 
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$PATH:$HOME/.elan/bin"
+export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 #eval "$(termium shell-hook show post)"
