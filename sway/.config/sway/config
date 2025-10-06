@@ -155,6 +155,9 @@ font pango:DejaVu Sans Mono 9.5
     bindsym $mod+Ctrl+Shift+Up move workspace to output up
     bindsym $mod+Ctrl+Shift+Right move workspace to output right
 
+    bindsym $mod+Shift+space fullscreen
+
+
 #
 # Layout stuff:
 #
