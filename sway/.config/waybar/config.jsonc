@@ -33,22 +33,22 @@
         "custom/power"
     ],
     // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "sway/workspaces": {
+        "disable-scroll-wraparound": true,
+        "enable-bar-scroll": true,
+        "smooth-scrolling-threshold": 1,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            //"1": "",
+            //"2": "",
+            //"3": "",
+            //"4": "",
+            //"5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -111,8 +111,9 @@
     },
     "clock": {
         // "timezone": "America/New_York",
+        "interval": 5,
+        "format": "{:%Y-%m-%d %H:%M:%S}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -132,7 +133,7 @@
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"]
     },
     "battery": {
         "states": {
