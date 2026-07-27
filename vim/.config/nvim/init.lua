@@ -33,8 +33,8 @@ vim.cmd [[Plug 'junegunn/fzf.vim']]
 
 vim.cmd [[Plug 'neovim/nvim-lspconfig']]
 -- Pin to the legacy master branch (main is an incompatible rewrite)
-vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'master', 'do': ':TSUpdate'}]]
-vim.cmd [[Plug 'nvim-treesitter/playground']]
+vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'main', 'do': ':TSUpdate'}]]
+--vim.cmd [[Plug 'nvim-treesitter/playground']]
 vim.cmd [[Plug 'hrsh7th/nvim-cmp']]
 vim.cmd [[Plug 'hrsh7th/cmp-buffer']]
 vim.cmd [[Plug 'hrsh7th/cmp-path']]
@@ -176,25 +176,8 @@ vim.api.nvim_set_keymap("n", "<Leader>b", "<Cmd>FzfBuffers<CR>", { silent=true, 
 
 -- Treesitter
 
-local treesitter = require('nvim-treesitter.configs')
-
--- Use a fork
-local treesitter_parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
---treesitter_parser_configs.cpp = {
---  install_info = {
---    url = "~/dev/tree-sitter-cpp",
---    files = { "src/parser.c", "src/scanner.cc" },
---    generate_requires_npm = true,
---  },
---  maintainers = { "@theHamsta" },
---}
-
-treesitter.setup {
-    ensure_installed = 'all',
-    ignore_install = {"ipkg"},
-    highlight = { enable = true, additional_vim_regex_highlighting = true },
-    --indent = { enable = true },
-}
+local treesitter = require('nvim-treesitter')
+-- No special config needed?
 
 --vim.opt.foldmethod = 'expr'
 --vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
@@ -263,17 +246,17 @@ cmp.setup.cmdline(':', {
 
 local nvim_lsp = require('lspconfig')
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = {
-      spacing = 8,
-      min = vim.diagnostic.severity.ERROR,
-    },
-    signs = false,
-    update_in_insert = false,
-  }
-)
+--vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  --vim.lsp.diagnostic.on_publish_diagnostics, {
+    --underline = true,
+    --virtual_text = {
+      --spacing = 8,
+      --min = vim.diagnostic.severity.ERROR,
+    --},
+    --signs = false,
+    --update_in_insert = false,
+  --}
+--)
 
 vim.diagnostic.config({
   underline = true,
