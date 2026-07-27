@@ -23,7 +23,6 @@ vim.pack.add({
   'https://github.com/scrooloose/nerdcommenter',
   'https://github.com/tpope/vim-sleuth',
   'https://github.com/airblade/vim-gitgutter',
-  'https://github.com/editorconfig/editorconfig-vim',
 
   'https://github.com/junegunn/fzf',
   'https://github.com/junegunn/fzf.vim',
