@@ -35,13 +35,6 @@ vim.cmd [[Plug 'neovim/nvim-lspconfig']]
 -- Pin to the legacy master branch (main is an incompatible rewrite)
 vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'main', 'do': ':TSUpdate'}]]
 --vim.cmd [[Plug 'nvim-treesitter/playground']]
-vim.cmd [[Plug 'hrsh7th/nvim-cmp']]
-vim.cmd [[Plug 'hrsh7th/cmp-buffer']]
-vim.cmd [[Plug 'hrsh7th/cmp-path']]
-vim.cmd [[Plug 'hrsh7th/cmp-cmdline']]
-vim.cmd [[Plug 'hrsh7th/cmp-nvim-lsp']]
-vim.cmd [[Plug 'hrsh7th/cmp-vsnip']]
-vim.cmd [[Plug 'hrsh7th/vim-vsnip']]
 
 vim.cmd [[Plug 'tpope/vim-fugitive']]
 
@@ -187,60 +180,11 @@ vim.opt.foldmethod = 'syntax'
 
 -- Completion
 --
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-
-local cmp = require('cmp')
-cmp.setup({
-  snippet = {
-    -- REQUIRED - you must specify a snippet engine
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-    end,
-  },
-  window = {
-    -- completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<C-y>'] = cmp.mapping.confirm({ select = false }), -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ['<C-e>'] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-    -- ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-  }, {
-    { name = 'vsnip' },
-  }, {
-    { name = 'buffer' },
-  })
-})
-
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-  sources = {
-    { name = 'buffer' }
-  }
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  })
-})
+-- Prefer omnifunc, then up to 5 keyword matches from the current buffer
+vim.o.complete = 'o,.^5'
+vim.o.autocomplete = true
+vim.o.autocompletedelay = 150
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'popup' }
 
 -- LSP
 
@@ -302,24 +246,28 @@ local lsp_on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<Leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
-  if client.server_capabilities.documentFormattingProvider then
+  if client:supports_method('textDocument/formatting') then
     buf_set_keymap('n', '<Leader>lw', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
   else
     buf_set_keymap('n', '<Leader>lw', '<cmd>echom "LSP formatting not supported"<CR>', opts)
   end
-  if client.server_capabilities.documentRangeFormattingProvider then
+  if client:supports_method('textDocument/rangeFormatting') then
     buf_set_keymap('v', '<Leader>lw', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
   else
     buf_set_keymap('v', '<Leader>lw', '<cmd>echom "LSP range formatting not supported"<CR>', opts)
   end
 
-  if client.server_capabilities.documentHighlightProvider then
+  if client:supports_method('textDocument/documentHighlight') then
     vim.cmd [[
     augroup lsp_document_highlight
     autocmd! * <buffer>
     autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
     ]]
+  end
+
+  if client:supports_method('textDocument/completion') then
+    vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
   end
 end
 
@@ -331,39 +279,18 @@ vim.cmd [[highlight LspReferenceWrite cterm=bold ctermbg=0 guibg=LightYellow]]
 -- map buffer local keybindings when the language server attaches
 local servers = { "clangd", "ts_ls", "pyright", "gopls" }
 for _, lsp in ipairs(servers) do
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  capabilities.offsetEncoding = "utf-8"
-  vim.lsp.config(lsp, {
-    on_attach = lsp_on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    capabilities = capabilities,
-  })
+  vim.lsp.config(lsp, { on_attach = lsp_on_attach })
   vim.lsp.enable(lsp)
 end
 
-if false then
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  capabilities.offsetEncoding = "utf-8"
-  vim.lsp.config("solc", {
-    on_attach = lsp_on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    capabilities = capabilities,
-    root_dir = nvim_lsp.util.root_pattern('hardhat.config.*', 'foundry.toml', '.git')
-  })
-  vim.lsp.enable("solc")
-end
+vim.lsp.config("solc", {
+  on_attach = lsp_on_attach,
+  root_markers = {'hardhat.config.ts', 'hardhat.config.js', 'foundry.toml', '.git'}
+})
+vim.lsp.enable("solc")
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 vim.lsp.config("rust_analyzer", {
   on_attach = lsp_on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
       diagnostics = {
@@ -373,12 +300,9 @@ vim.lsp.config("rust_analyzer", {
   }
 })
 vim.lsp.enable("rust_analyzer")
+
 vim.lsp.config("kotlin_language_server", {
   on_attach = lsp_on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  capabilities = capabilities,
   root_markers = { 'settings.gradle', 'Makefile' }
 })
 vim.lsp.enable("kotlin_language_server")
