@@ -188,22 +188,25 @@ fi
 
 eval "$(direnv hook zsh)"
 
+if false; then
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
+fi
 
 #export NODE_OPTIONS=--openssl-legacy-provider
 
+if false; then
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-#
 # virtualenv wrapper setup
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/projects
 #source /usr/bin/virtualenvwrapper_lazy.sh
 pyenv virtualenvwrapper_lazy
+fi
 
 if [ -n "$VIRTUAL_ENV" ]; then
   . "$VIRTUAL_ENV/bin/activate"
