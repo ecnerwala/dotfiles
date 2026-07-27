@@ -1,3 +1,5 @@
+require('vim._core.ui2').enable({})
+
 -- Concise way to escape termcodes
 local function t(str)
     -- Adjust boolean arguments as needed
@@ -336,5 +338,3 @@ command -range=% -nargs=1 P exe "<line1>,<line2>!".<q-args> | y | sil u | echom 
 command -range=% Hash <line1>,<line2>P cpp -P -fpreprocessed | tr -d '[:space:]' | md5sum
 autocmd FileType cpp com! -buffer -range=% Hash <line1>,<line2>P cpp -P -fpreprocessed | tr -d '[:space:]' | md5sum
 ]]
-
-require('vim._core.ui2').enable({})
