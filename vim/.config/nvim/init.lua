@@ -110,12 +110,14 @@ vim.opt.cinoptions = {'N-s', 'g0', 'j1', '(s', 'm1'}
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 -- Redefine * and # to obey smartcase
-vim.api.nvim_set_keymap('n', '*', [[/\<<C-R>=expand('<cword>')<CR>\><CR>]], { noremap = true })
-vim.api.nvim_set_keymap('n', '#', [[?\<<C-R>=expand('<cword>')<CR>\><CR>]], { noremap = true })
+vim.keymap.set('n', '*', [[/\<<C-R>=expand('<cword>')<CR>\><CR>]])
+vim.keymap.set('n', '#', [[?\<<C-R>=expand('<cword>')<CR>\><CR>]])
 -- Map <CR> to :nohl, except in quickfix windows
-vim.cmd [[nnoremap <silent> <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : ":nohl\<CR>"]]
+vim.keymap.set('n', '<CR>', function()
+  return vim.bo.buftype == 'quickfix' and '<CR>' or '<Cmd>nohl<CR>'
+end, { expr = true })
 
-vim.api.nvim_set_keymap('n', 'gA', ':%y+<CR>', { noremap = true })
+vim.keymap.set('n', 'gA', '<Cmd>%y+<CR>')
 
 vim.opt.hidden = false
 -- Necessary for terminal buffers not to die
@@ -162,12 +164,12 @@ vim.cmd [[set errorformat^=%-GIn\ file\ included\ %.%#]]
 
 vim.g.NERDAltDelims_c = 1
 
-vim.api.nvim_set_keymap("n", "<Leader>n", "<Cmd>NERDTreeClose<CR><Cmd>silent! NERDTreeFind<CR><Cmd>NERDTreeFocus<CR>", { silent=true, noremap=true })
+vim.keymap.set("n", "<Leader>n", "<Cmd>NERDTreeClose<CR><Cmd>silent! NERDTreeFind<CR><Cmd>NERDTreeFocus<CR>")
 
 vim.g.fzf_command_prefix = 'Fzf'
-vim.api.nvim_set_keymap("n", "<Leader><Space>", "<Cmd>call fzf#vim#gitfiles('-co --exclude-standard')<CR>", { silent=true, noremap=true })
-vim.api.nvim_set_keymap("n", "<Leader>f", "<Cmd>FzfRg<CR>", { silent=true, noremap=true })
-vim.api.nvim_set_keymap("n", "<Leader>b", "<Cmd>FzfBuffers<CR>", { silent=true, noremap=true })
+vim.keymap.set("n", "<Leader><Space>", "<Cmd>call fzf#vim#gitfiles('-co --exclude-standard')<CR>")
+vim.keymap.set("n", "<Leader>f", "<Cmd>FzfRg<CR>")
+vim.keymap.set("n", "<Leader>b", "<Cmd>FzfBuffers<CR>")
 
 -- Treesitter
 
@@ -189,8 +191,6 @@ vim.o.autocompletedelay = 150
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'popup' }
 
 -- LSP
-
-local nvim_lsp = require('lspconfig')
 
 --vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   --vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -217,46 +217,38 @@ vim.diagnostic.config({
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local lsp_on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { buffer = bufnr }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = bufnr, nowait = true })
+  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
 
   -- Workspace management
-  buf_set_keymap('n', '<Leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<Leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<Leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  vim.keymap.set('n', '<Leader>lwa', vim.lsp.buf.add_workspace_folder, opts)
+  vim.keymap.set('n', '<Leader>lwr', vim.lsp.buf.remove_workspace_folder, opts)
+  vim.keymap.set('n', '<Leader>lwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
 
-  buf_set_keymap('n', '<Leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<Leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<Leader>lf', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '<Leader>le', '<cmd>lua vim.diagnostic.open_float({scope="c"})<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<Leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  vim.keymap.set('n', '<Leader>lr', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', '<Leader>lf', vim.lsp.buf.code_action, opts)
+  vim.keymap.set('n', '<Leader>le', function() vim.diagnostic.open_float({scope="c"}) end, opts)
+  vim.keymap.set('n', '<Leader>lq', vim.diagnostic.setloclist, opts)
 
   if client:supports_method('textDocument/formatting') then
-    buf_set_keymap('n', '<Leader>lw', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+    vim.keymap.set('n', '<Leader>lw', vim.lsp.buf.format, opts)
   else
-    buf_set_keymap('n', '<Leader>lw', '<cmd>echom "LSP formatting not supported"<CR>', opts)
+    vim.keymap.set('n', '<Leader>lw', '<cmd>echom "LSP formatting not supported"<CR>', opts)
   end
   if client:supports_method('textDocument/rangeFormatting') then
-    buf_set_keymap('v', '<Leader>lw', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+    vim.keymap.set('v', '<Leader>lw', vim.lsp.buf.format, opts)
   else
-    buf_set_keymap('v', '<Leader>lw', '<cmd>echom "LSP range formatting not supported"<CR>', opts)
+    vim.keymap.set('v', '<Leader>lw', '<cmd>echom "LSP range formatting not supported"<CR>', opts)
   end
 
   if client:supports_method('textDocument/documentHighlight') then
