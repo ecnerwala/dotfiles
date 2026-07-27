@@ -3,55 +3,64 @@ require('vim._core.ui2').enable({})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.fn['plug#begin']()
+-- Run :lua vim.pack.update() to update
+vim.pack.add({
+  'https://github.com/rbgrouleff/bclose.vim',
+  'https://github.com/preservim/nerdtree',
 
--- Navigation plugins
-vim.cmd [[Plug 'rbgrouleff/bclose.vim']]
-vim.cmd [[Plug 'preservim/nerdtree']]
+  -- Navigation plugins
+  'https://github.com/rbgrouleff/bclose.vim',
+  'https://github.com/preservim/nerdtree',
 
--- UI Plugins
-vim.cmd [[Plug 'vim-airline/vim-airline']]
-vim.cmd [[Plug 'vim-airline/vim-airline-themes']]
-vim.cmd [[Plug 'bling/vim-bufferline']]
---vim.cmd [[Plug 'altercation/vim-colors-solarized']]
---vim.cmd [[Plug 'overcache/NeoSolarized']]
-vim.cmd [[Plug 'lifepillar/vim-solarized8', {'branch': 'neovim'}]]
+  -- UI Plugins
+  'https://github.com/vim-airline/vim-airline',
+  'https://github.com/vim-airline/vim-airline-themes',
+  'https://github.com/bling/vim-bufferline',
 
--- Editor plugins
-vim.cmd [[Plug 'Raimondi/delimitMate']]
-vim.cmd [[Plug 'scrooloose/nerdcommenter']]
-vim.cmd [[Plug 'tpope/vim-sleuth']]
-vim.cmd [[Plug 'airblade/vim-gitgutter']]
-vim.cmd [[Plug 'editorconfig/editorconfig-vim']]
+  --'https://github.com/altercation/vim-colors-solarized',
+  --'https://github.com/overcache/NeoSolarized',
+  {
+	  src = 'https://github.com/lifepillar/vim-solarized8',
+	  version = 'neovim',
+  },
 
-vim.cmd [[Plug 'junegunn/fzf']]
-vim.cmd [[Plug 'junegunn/fzf.vim']]
+  -- Editor plugins
+  'https://github.com/Raimondi/delimitMate',
+  'https://github.com/scrooloose/nerdcommenter',
+  'https://github.com/tpope/vim-sleuth',
+  'https://github.com/airblade/vim-gitgutter',
+  'https://github.com/editorconfig/editorconfig-vim',
 
-vim.cmd [[Plug 'neovim/nvim-lspconfig']]
--- Pin to the legacy master branch (main is an incompatible rewrite)
-vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'main', 'do': ':TSUpdate'}]]
---vim.cmd [[Plug 'nvim-treesitter/playground']]
+  'https://github.com/junegunn/fzf',
+  'https://github.com/junegunn/fzf.vim',
 
-vim.cmd [[Plug 'tpope/vim-fugitive']]
+  'https://github.com/neovim/nvim-lspconfig',
+  {
+	  src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+	  version = 'main',
+  },
+  -- Use :InspectTree
+  --'nvim-treesitter/playground',
 
---vim.cmd [[Plug 'Exafunction/codeium.vim']]
+  'https://github.com/tpope/vim-fugitive',
 
---vim.cmd [[Plug 'github/copilot.vim']]
---vim.cmd [[Plug 'hrsh7th/cmp-copilot']]
+  --'https://github.com/Exafunction/codeium.vim',
 
--- Language specific
---TODO
-vim.cmd [[Plug 'lervag/vimtex', { 'for': 'tex' }]]
-vim.cmd [[Plug 'vim-pandoc/vim-pandoc']]
-vim.cmd [[Plug 'Vimjas/vim-python-pep8-indent']]
-vim.cmd [[Plug 'maxmellon/vim-jsx-pretty']]
-vim.cmd [[Plug 'iden3/vim-circom-syntax']]
-vim.cmd [[Plug 'tmhedberg/SimpylFold']]
+  --'https://github.com/github/copilot.vim',
+  --'https://github.com/hrsh7th/cmp-copilot',
 
--- Note taking
-vim.cmd [[Plug 'lukaszkorecki/workflowish']]
+  -- Language specific
+  --TODO
+  'https://github.com/lervag/vimtex',
+  'https://github.com/vim-pandoc/vim-pandoc',
+  'https://github.com/Vimjas/vim-python-pep8-indent',
+  'https://github.com/maxmellon/vim-jsx-pretty',
+  'https://github.com/iden3/vim-circom-syntax',
+  'https://github.com/tmhedberg/SimpylFold',
 
-vim.fn['plug#end']()
+  -- Note taking
+  'https://github.com/lukaszkorecki/workflowish',
+})
 
 vim.opt.backspace = { 'indent', 'eol', 'start' }
 vim.opt.softtabstop = 4

@@ -1,0 +1,98 @@
+{
+  "plugins": {
+    "SimpylFold": {
+      "rev": "ff4c85197c5555715093c08a8d4f9d493c4d80cd",
+      "src": "https://github.com/tmhedberg/SimpylFold"
+    },
+    "bclose.vim": {
+      "rev": "99018b4a2dd18aea1cbd3aa23565b01a0f8c5b73",
+      "src": "https://github.com/rbgrouleff/bclose.vim"
+    },
+    "delimitMate": {
+      "rev": "becbd2d353a2366171852387288ebb4b33a02487",
+      "src": "https://github.com/Raimondi/delimitMate"
+    },
+    "editorconfig-vim": {
+      "rev": "c0227885a06b155d5aa5465e08b9800e8c939f70",
+      "src": "https://github.com/editorconfig/editorconfig-vim"
+    },
+    "fzf": {
+      "rev": "0efef298d2a47cf757d6deedaa804ecc0515bb28",
+      "src": "https://github.com/junegunn/fzf"
+    },
+    "fzf.vim": {
+      "rev": "d2a59a992a2455f609c0fde2ebd84427ea8f919a",
+      "src": "https://github.com/junegunn/fzf.vim"
+    },
+    "nerdcommenter": {
+      "rev": "a462bbda1e26f44fb3d3eb9d9d1c6a07aa98e665",
+      "src": "https://github.com/scrooloose/nerdcommenter"
+    },
+    "nerdtree": {
+      "rev": "690d061b591525890f1471c6675bcb5bdc8cdff9",
+      "src": "https://github.com/preservim/nerdtree"
+    },
+    "nvim-lspconfig": {
+      "rev": "7ab79bb1b57160a537f427ac8a6026102f12b701",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "61df84986b4b4ec469ee745a182e433d49f8c27e",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'main'"
+    },
+    "vim-airline": {
+      "rev": "a2fefe599378b4a493287d10501f51e224753690",
+      "src": "https://github.com/vim-airline/vim-airline"
+    },
+    "vim-airline-themes": {
+      "rev": "77aab8c6cf7179ddb8a05741da7e358a86b2c3ab",
+      "src": "https://github.com/vim-airline/vim-airline-themes"
+    },
+    "vim-bufferline": {
+      "rev": "651fd010aa9613a4b8636a4af8a2db0d22800262",
+      "src": "https://github.com/bling/vim-bufferline"
+    },
+    "vim-circom-syntax": {
+      "rev": "da7bb12643086c6907c334c5d049dad58a230ae2",
+      "src": "https://github.com/iden3/vim-circom-syntax"
+    },
+    "vim-fugitive": {
+      "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
+      "src": "https://github.com/tpope/vim-fugitive"
+    },
+    "vim-gitgutter": {
+      "rev": "90b75207bd9b55d8ac4af15f72b4e935462014d0",
+      "src": "https://github.com/airblade/vim-gitgutter"
+    },
+    "vim-jsx-pretty": {
+      "rev": "6989f1663cc03d7da72b5ef1c03f87e6ddb70b41",
+      "src": "https://github.com/maxmellon/vim-jsx-pretty"
+    },
+    "vim-pandoc": {
+      "rev": "c31d5c10b29c99cf1a344ae30e2ffa32cf2df743",
+      "src": "https://github.com/vim-pandoc/vim-pandoc"
+    },
+    "vim-python-pep8-indent": {
+      "rev": "60ba5e11a61618c0344e2db190210145083c91f8",
+      "src": "https://github.com/Vimjas/vim-python-pep8-indent"
+    },
+    "vim-sleuth": {
+      "rev": "be69bff86754b1aa5adcbb527d7fcd1635a84080",
+      "src": "https://github.com/tpope/vim-sleuth"
+    },
+    "vim-solarized8": {
+      "rev": "1d05915cc9050ce1a8a6b94d8c2e48ead197c756",
+      "src": "https://github.com/lifepillar/vim-solarized8",
+      "version": "'neovim'"
+    },
+    "vimtex": {
+      "rev": "853eb587873a7061a083655578be56dd8027b834",
+      "src": "https://github.com/lervag/vimtex"
+    },
+    "workflowish": {
+      "rev": "65472189814dddd060aaa558103d837c2f9a5ec9",
+      "src": "https://github.com/lukaszkorecki/workflowish"
+    }
+  }
+}
