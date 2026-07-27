@@ -5,9 +5,6 @@ vim.g.maplocalleader = ' '
 
 -- Run :lua vim.pack.update() to update
 vim.pack.add({
-  'https://github.com/rbgrouleff/bclose.vim',
-  'https://github.com/preservim/nerdtree',
-
   -- Navigation plugins
   'https://github.com/rbgrouleff/bclose.vim',
   'https://github.com/preservim/nerdtree',
@@ -19,10 +16,7 @@ vim.pack.add({
 
   --'https://github.com/altercation/vim-colors-solarized',
   --'https://github.com/overcache/NeoSolarized',
-  {
-	  src = 'https://github.com/lifepillar/vim-solarized8',
-	  version = 'neovim',
-  },
+  { src = 'https://github.com/lifepillar/vim-solarized8', version = 'neovim' },
 
   -- Editor plugins
   'https://github.com/Raimondi/delimitMate',
@@ -35,19 +29,14 @@ vim.pack.add({
   'https://github.com/junegunn/fzf.vim',
 
   'https://github.com/neovim/nvim-lspconfig',
-  {
-	  src = 'https://github.com/nvim-treesitter/nvim-treesitter',
-	  version = 'main',
-  },
-  -- Use :InspectTree
-  --'nvim-treesitter/playground',
+
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
 
   'https://github.com/tpope/vim-fugitive',
 
   --'https://github.com/Exafunction/codeium.vim',
 
   --'https://github.com/github/copilot.vim',
-  --'https://github.com/hrsh7th/cmp-copilot',
 
   -- Language specific
   --TODO
@@ -185,6 +174,7 @@ vim.api.nvim_create_autocmd('FileType', {
     end
   end,
 })
+-- Use :InspectTree to inspect the current file
 
 --vim.opt.foldlevel = 1
 vim.o.foldmethod = 'syntax'
