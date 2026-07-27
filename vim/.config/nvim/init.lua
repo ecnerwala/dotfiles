@@ -170,9 +170,10 @@ vim.keymap.set("n", "<Leader>b", "<Cmd>FzfBuffers<CR>")
 -- Try to start treesitter for all buffer types
 vim.api.nvim_create_autocmd('FileType', {
   callback = function(args)
-    pcall(vim.treesitter.start, args.buf)
-    --vim.wo.foldmethod = 'expr'
-    --vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    if pcall(vim.treesitter.start, args.buf) then
+      vim.wo[0][0].foldmethod = 'expr'
+      vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    end
   end,
 })
 
