@@ -1,5 +1,7 @@
 [
   (for_statement)
+  ; Handled below
+  ;(if_statement)
   (while_statement)
   (do_statement)
   (switch_statement)
