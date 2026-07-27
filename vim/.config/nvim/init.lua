@@ -1,13 +1,7 @@
 require('vim._core.ui2').enable({})
 
--- Concise way to escape termcodes
-local function t(str)
-    -- Adjust boolean arguments as needed
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-vim.g.mapleader = t'<Space>'
-vim.g.maplocalleader = t'<Space>'
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 vim.fn['plug#begin']()
 
@@ -173,14 +167,17 @@ vim.keymap.set("n", "<Leader>b", "<Cmd>FzfBuffers<CR>")
 
 -- Treesitter
 
-local treesitter = require('nvim-treesitter')
--- No special config needed?
+-- Try to start treesitter for all buffer types
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+    --vim.wo.foldmethod = 'expr'
+    --vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+  end,
+})
 
---vim.opt.foldmethod = 'expr'
---vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 --vim.opt.foldlevel = 1
-
-vim.opt.foldmethod = 'syntax'
+vim.o.foldmethod = 'syntax'
 
 -- Completion
 --
@@ -232,7 +229,7 @@ local lsp_on_attach = function(client, bufnr)
   -- Workspace management
   vim.keymap.set('n', '<Leader>lwa', vim.lsp.buf.add_workspace_folder, opts)
   vim.keymap.set('n', '<Leader>lwr', vim.lsp.buf.remove_workspace_folder, opts)
-  vim.keymap.set('n', '<Leader>lwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
+  vim.keymap.set('n', '<Leader>lwl', function() vim.print(vim.lsp.buf.list_workspace_folders()) end, opts)
 
   vim.keymap.set('n', '<Leader>lr', vim.lsp.buf.rename, opts)
   vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename, opts)
@@ -243,12 +240,12 @@ local lsp_on_attach = function(client, bufnr)
   if client:supports_method('textDocument/formatting') then
     vim.keymap.set('n', '<Leader>lw', vim.lsp.buf.format, opts)
   else
-    vim.keymap.set('n', '<Leader>lw', '<cmd>echom "LSP formatting not supported"<CR>', opts)
+    vim.keymap.set('n', '<Leader>lw', function() vim.notify('LSP formatting not supported') end, opts)
   end
   if client:supports_method('textDocument/rangeFormatting') then
     vim.keymap.set('v', '<Leader>lw', vim.lsp.buf.format, opts)
   else
-    vim.keymap.set('v', '<Leader>lw', '<cmd>echom "LSP range formatting not supported"<CR>', opts)
+    vim.keymap.set('v', '<Leader>lw', function() vim.notify('LSP range formatting not supported') end, opts)
   end
 
   if client:supports_method('textDocument/documentHighlight') then
