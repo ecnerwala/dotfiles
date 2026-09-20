@@ -180,6 +180,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
 --vim.opt.foldlevel = 1
 vim.o.foldmethod = 'syntax'
+vim.o.foldtext = ''
 
 -- Completion
 --
