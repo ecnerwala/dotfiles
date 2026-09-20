@@ -58,3 +58,5 @@
 	smudge = git-lfs smudge -- %f
 [status]
 	submodulesummary = true
+[fetch]
+	prune = true
