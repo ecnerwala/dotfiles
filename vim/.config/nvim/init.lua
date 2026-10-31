@@ -332,13 +332,22 @@ autocmd FileType cpp com! -buffer -range=% Hash <line1>,<line2>P cpp -P -fprepro
 ]]
 
 -- Autocommit on save in repos with .autocommit at the root
+local function autocommit_root(buf)
+  if vim.b[buf].autocommit_root == nil then
+    vim.b[buf].autocommit_root = vim.fs.root(buf, '.autocommit') or false
+  end
+  return vim.b[buf].autocommit_root
+end
+-- Every save is committed, so gitgutter would never show anything
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
+  callback = function(args)
+    if autocommit_root(args.buf) then vim.cmd.GitGutterBufferDisable() end
+  end,
+})
 local autocommit_busy = false
 vim.api.nvim_create_autocmd('BufWritePost', {
   callback = function(args)
-    if vim.b[args.buf].autocommit_root == nil then
-      vim.b[args.buf].autocommit_root = vim.fs.root(args.buf, '.autocommit') or false
-    end
-    local root = vim.b[args.buf].autocommit_root
+    local root = autocommit_root(args.buf)
     if not root or autocommit_busy then return end
     autocommit_busy = true
     local file = vim.api.nvim_buf_get_name(args.buf)
