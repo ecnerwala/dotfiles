@@ -330,3 +330,24 @@ command -range=% -nargs=1 P exe "<line1>,<line2>!".<q-args> | y | sil u | echom 
 command -range=% Hash <line1>,<line2>P cpp -P -fpreprocessed | tr -d '[:space:]' | md5sum
 autocmd FileType cpp com! -buffer -range=% Hash <line1>,<line2>P cpp -P -fpreprocessed | tr -d '[:space:]' | md5sum
 ]]
+
+-- Autocommit on save in repos with .autocommit at the root
+local autocommit_busy = false
+vim.api.nvim_create_autocmd('BufWritePost', {
+  callback = function(args)
+    if vim.b[args.buf].autocommit_root == nil then
+      vim.b[args.buf].autocommit_root = vim.fs.root(args.buf, '.autocommit') or false
+    end
+    local root = vim.b[args.buf].autocommit_root
+    if not root or autocommit_busy then return end
+    autocommit_busy = true
+    local file = vim.api.nvim_buf_get_name(args.buf)
+    local msg = '[autocommit] save ' .. vim.fs.relpath(root, file)
+    vim.system({ 'git', '-C', root, 'add', '--', file }, {}, function(r)
+      if r.code ~= 0 then autocommit_busy = false return end
+      vim.system({ 'git', '-C', root, 'commit', '-q', '-m', msg, '--', file }, {}, function()
+        autocommit_busy = false
+      end)
+    end)
+  end,
+})
