@@ -13,7 +13,8 @@
 # Compiled source #
 ###################
 *.com
-!*.com/  # /github.com/ shows up in go projects
+# /github.com/ shows up in go projects
+!*.com/
 *.class
 *.dll
 *.exe
