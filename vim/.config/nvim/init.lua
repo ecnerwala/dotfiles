@@ -360,3 +360,42 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     end)
   end,
 })
+
+-- :[range]Bundle [args]: re-bundle the range (bundle regions and #include "..."
+-- lines) in place with cp-book's scripts/bundle.py; with no range, the closed
+-- fold under the cursor, else the current line
+local cp_book = vim.fn.expand('~/dev/cp-book')
+vim.api.nvim_create_user_command('Bundle', function(o)
+  local line1, line2 = o.line1, o.line2
+  if o.range == 0 and vim.fn.foldclosed(line1) ~= -1 then
+    line1, line2 = vim.fn.foldclosed(line1), vim.fn.foldclosedend(line1)
+  end
+  local lines = vim.api.nvim_buf_get_lines(0, line1 - 1, line2, true)
+  local cmd = { cp_book .. '/scripts/bundle.py', '--at', tostring(line1), '-' }
+  vim.list_extend(cmd, o.fargs)
+  local r = vim.system(cmd, {
+    cwd = vim.fn.expand('%:p:h'),
+    stdin = table.concat(lines, '\n') .. '\n',
+  }):wait()
+  if r.code ~= 0 then
+    vim.notify('Bundle: ' .. r.stderr, vim.log.levels.ERROR)
+    return
+  end
+  local out = vim.split(r.stdout, '\n', { trimempty = true })
+  vim.api.nvim_buf_set_lines(0, line1 - 1, line2, true, out)
+end, {
+  range = true,
+  nargs = '*',
+  complete = function(arg)
+    local src = cp_book .. '/src/'
+    local names = {}
+    for _, p in ipairs(vim.fn.glob(src .. arg .. '*', false, true)) do
+      if vim.fn.isdirectory(p) == 1 then
+        table.insert(names, p:sub(#src + 1) .. '/')
+      elseif p:match('%.hpp$') and not p:match('%.test%.hpp$') then
+        table.insert(names, p:sub(#src + 1))
+      end
+    end
+    return vim.list_extend(names, vim.fn.getcompletion(arg, 'file'))
+  end,
+})
